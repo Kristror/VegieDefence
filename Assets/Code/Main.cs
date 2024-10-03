@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public GameObject playerPrefab;
+    
+    private Player player;
+    private PlayerMovement playerMovment;
 
-    // Update is called once per frame
+    public void Start()
+    {
+        GameObject playerObject = GameObject.Instantiate(playerPrefab);
+        player = playerObject.GetComponent<Player>();
+        playerMovment = playerObject.GetComponent<PlayerMovement>();
+    }
     void Update()
     {
-        
+        player.FrameUpdate();
+        playerMovment.FrameUpdate();
     }
 }
