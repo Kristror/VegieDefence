@@ -1,43 +1,49 @@
-using Assets.Code.Player;
 using UnityEngine;
 
-public class PlayerShooting : MonoBehaviour
+namespace Assets.Code.Player
 {
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private GameObject bulletStartPos;
-    [SerializeField] private float shootingSpeed;
-    [SerializeField] private int amountOfBullets;
 
-    private Transform bullet;
-    private BulletPool bulletPool;
-    private float lastShoot;
-
-    void Start()
+    public class PlayerShooting : MonoBehaviour
     {
-        amountOfBullets = 150;
-        shootingSpeed = 1;
+        [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private GameObject bulletStartPos;
+        [SerializeField] private float shootingSpeed;
+        [SerializeField] private int amountOfBullets;
 
-        lastShoot = Time.time;
-        bulletPool = new BulletPool(amountOfBullets, bulletPrefab);
-    }    
+        private Transform bullet;
+        private BulletPool bulletPool;
+        private float lastShoot;
 
-    public void FrameUpdate()
-    {
-        Shoot();
-    }
-
-    /// <summary>
-    /// Стреляет в прямом направлении от игрока, с заданной скоростью
-    /// </summary>
-    private void Shoot()
-    {
-        if( (Time.time-lastShoot) >= shootingSpeed)
+        void Start()
         {
+            amountOfBullets = 50;
+            shootingSpeed = 0.2f;
+
             lastShoot = Time.time;
-            bullet = bulletPool.GetBullet();
+            bulletPool = new BulletPool(amountOfBullets, bulletPrefab, bulletStartPos.transform);
+        }
 
-            
+        public void FrameUpdate()
+        {
+            Shoot();
+            bulletPool.FrameUpdate();
+        }
 
+        /// <summary>
+        /// Стреляет в прямом направлении от игрока, с заданной скоростью
+        /// </summary>
+        private void Shoot()
+        {
+            if ((Time.time - lastShoot) >= shootingSpeed)
+            {
+                lastShoot = Time.time;
+                bullet = bulletPool.GetObject();
+
+                bullet.transform.position = bulletStartPos.transform.position;
+                //bullet.transform.rotation = bulletStartPos.transform.rotation;
+
+                bullet.GetComponent<Bullet>().Shoot();
+            }
         }
     }
 }

@@ -1,24 +1,30 @@
 using UnityEngine;
+using Assets.Code.Player;
+using Assets.Code.Enemy;
 
-public class Main : MonoBehaviour
+namespace Assets.Code
 {
-    public GameObject playerPrefab;
-    
-    private Player player;
-    private PlayerMovement playerMovment;
-    private PlayerShooting playerShooting;
+    public class Main : MonoBehaviour
+    {
+        public GameObject playerPrefab;
 
-    public void Start()
-    {
-        GameObject playerObject = GameObject.Instantiate(playerPrefab);
-        player = playerObject.GetComponent<Player>();
-        playerMovment = playerObject.GetComponent<PlayerMovement>();
-        playerShooting = playerObject.GetComponent<PlayerShooting>();
-    }
-    void Update()
-    {
-        player.FrameUpdate();
-        playerMovment.FrameUpdate();
-        playerShooting.FrameUpdate();
+        private PlayerBase playerBase;
+        private PlayerMovement playerMovment;
+        private PlayerShooting playerShooting;
+
+        public void Start()
+        {
+            GameObject playerObject = GameObject.Instantiate(playerPrefab);
+
+            playerBase = playerObject.GetComponent<PlayerBase>();
+            playerMovment = playerObject.GetComponent<PlayerMovement>();
+            playerShooting = playerObject.GetComponent<PlayerShooting>();
+        }
+        void Update()
+        {
+            playerBase.FrameUpdate();
+            playerMovment.FrameUpdate();
+            playerShooting.FrameUpdate();
+        }
     }
 }

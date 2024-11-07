@@ -6,61 +6,46 @@ namespace Assets.Code.Player
     /// <summary>
     /// Массив управляющий пулями для стрельбы
     /// </summary>
-    public class BulletPool 
+    public class BulletPool : PoolBase
     {
-        private Transform poolObject;
-        private List<Transform> bulletPool;
-        private int poolLenght;
-        private int bulletCount;
-
-        private GameObject bullet;
-
-        
         /// <param name="poolLenght">Размер массива</param>
         /// <param name="bullet">Обьект пули</param>
-        public BulletPool(int poolLenght, GameObject bullet)
+        public BulletPool(int poolLenght, GameObject bullet, Transform bulletStartPos)
         {
-            this.bullet = bullet;
+            poolObject = bullet;
             this.poolLenght = poolLenght;
 
-            bulletCount = -1;
-            CreateBulletPool();
+            poolCount = -1;
+            CreateBulletPool(bulletStartPos);
         }
 
         /// <summary>
         /// Создает и заполняет пул с пулями для стрельбы
         /// </summary>
-        private void CreateBulletPool()
+        private void CreateBulletPool(Transform bulletStartPos)
         {
-            poolObject = new GameObject("bulletPool").transform;
+            poolInstanse = new GameObject("BulletPool").transform;
 
-            bulletPool = new List<Transform>();
-
-            poolLenght = 150;
+            poolList = new List<Transform>();
 
             for (int i = 0; i < poolLenght; i++)
             {
-                GameObject item = GameObject.Instantiate(bullet);
+                GameObject item = GameObject.Instantiate(poolObject);
 
-                bulletPool.Add(item.transform);
+                item.GetComponent<Bullet>().SetUp(bulletStartPos);
 
-                item.transform.SetParent(poolObject);
+                poolList.Add(item.transform);
+                item.transform.SetParent(poolInstanse);
                 item.SetActive(false);
             }
         }
 
-        /// <summary>
-        /// Передает пулю для стрельбы
-        /// </summary>
-        public Transform GetBullet()
+        public void FrameUpdate()
         {
-            bulletCount++;
-            if (bulletCount == poolLenght)
+            foreach (Transform item in poolList)
             {
-                bulletCount = 0;
-            }
-
-            return bulletPool[bulletCount];
+                if (item.gameObject.activeSelf) item.GetComponent<Bullet>().FrameUpdate();
+            } 
         }
     }
 }
