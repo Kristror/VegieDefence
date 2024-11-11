@@ -32,7 +32,7 @@ namespace Assets.Code.Player
             {
                 GameObject item = GameObject.Instantiate(poolObject);
 
-                item.GetComponent<Bullet>().SetUp(bulletStartPos);
+                item.GetComponent<BulletMovement>().SetUp(bulletStartPos);
 
                 poolList.Add(item.transform);
                 item.transform.SetParent(poolInstanse);
@@ -44,7 +44,7 @@ namespace Assets.Code.Player
         {
             foreach (Transform item in poolList)
             {
-                if (item.gameObject.activeSelf) item.GetComponent<Bullet>().FrameUpdate();
+                if (item.gameObject.activeSelf) item.GetComponent<BulletMovement>().FrameUpdate();
             } 
         }
     }

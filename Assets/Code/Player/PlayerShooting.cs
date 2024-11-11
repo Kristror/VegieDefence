@@ -42,7 +42,7 @@ namespace Assets.Code.Player
                 bullet.transform.position = bulletStartPos.transform.position;
                 //bullet.transform.rotation = bulletStartPos.transform.rotation;
 
-                bullet.GetComponent<Bullet>().Shoot();
+                bullet.GetComponent<BulletMovement>().Shoot();
             }
         }
     }

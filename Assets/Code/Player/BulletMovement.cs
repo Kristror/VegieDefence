@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Code.Player
 {
-    public class Bullet : MonoBehaviour
+    public class BulletMovement : MonoBehaviour
     {
         private float bulletForce;
         private float timeToLive;
@@ -15,7 +15,7 @@ namespace Assets.Code.Player
         {
             this.bulletStartPos = bulletStartPos;
             bulletForce = 1;
-            timeToLive = 20;
+            timeToLive = 2;
 
             rigidBody = GetComponent<Rigidbody2D>();
         }
@@ -43,7 +43,9 @@ namespace Assets.Code.Player
 
         private void Stop() 
         {
-            transform.position = Vector3.zero;
+            transform.position = Vector3.zero; 
+            rigidBody.linearVelocity = Vector2.zero;
+
             gameObject.SetActive(false);
         }
     }
