@@ -2,7 +2,7 @@
 
 namespace Assets.Code.Player
 {
-    [CreateAssetMenu(fileName = "PlayerStats", menuName = "Player stats")]
+    [CreateAssetMenu(fileName = "MyTool/PlayerStats", menuName = "Player stats")]
     public class PlayerStats : ScriptableObject
     {
         [SerializeField] private int health;

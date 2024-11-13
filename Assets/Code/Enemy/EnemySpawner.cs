@@ -2,29 +2,36 @@ using UnityEngine;
 
 namespace Assets.Code.Enemy
 {
-    public class EnemySpawner : MonoBehaviour
+    public class EnemySpawner
     {
-        [SerializeField] private GameObject EnemyObject;
+        private GameObject enemyObject;
 
-        private float enemyAmount;
+        private int enemyAmount;
         private float speedOfSpawn;
         private float spawnRange;
 
         private EnemyPool enemyPool;
 
 
-        private void Start()
+        public EnemySpawner(GameObject enemyObject)
         {
+            this.enemyObject = enemyObject;
             enemyAmount = 20;
             speedOfSpawn = 10;
             spawnRange = 2;
 
-            enemyPool = new EnemyPool();
+            enemyPool = new EnemyPool(enemyAmount, this.enemyObject);
+        }
+
+        public void FrameUpdate()
+        {
+            enemyPool.FrameUpdate();
         }
 
         private void SpawnEnemy()
         {
             enemyPool.GetObject();
+            //перемещать противника в зону за экраном
         }
     }
 }

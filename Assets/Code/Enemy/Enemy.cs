@@ -4,16 +4,43 @@ namespace Assets.Code.Enemy
 {
     public class Enemy : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
+        [SerializeField] private float health;
+        [SerializeField] private int damage;
 
+        public void SetDamage(int newDamage)
+        {
+            damage = newDamage;
         }
 
-        // Update is called once per frame
-        void Update()
+        public void SetHp(int newHP)
         {
+            health = newHP;
+        }
 
+        public void Allive()
+        {
+            gameObject.SetActive(true);
+        }
+
+        void OnCollisionEnter2D(Collision2D collision)
+        {
+            string tag = collision.gameObject.tag;
+            Debug.Log(tag);
+            if (tag == "Bullet")
+            {
+                //убавить здоровье
+                Death();
+            }
+            if(tag == "Player")
+            {
+                //нанести урон
+                Death();
+            }
+        }
+
+        void Death()
+        {
+            gameObject.SetActive(false);
         }
     }
 }
