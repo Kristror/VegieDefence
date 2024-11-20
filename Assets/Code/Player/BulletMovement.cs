@@ -48,5 +48,10 @@ namespace Assets.Code.Player
 
             gameObject.SetActive(false);
         }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            Stop();
+        }
     }
 }
