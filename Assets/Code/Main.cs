@@ -6,8 +6,9 @@ namespace Assets.Code
 {
     public class Main : MonoBehaviour
     {
-        public GameObject playerPrefab;
-        public GameObject enemyPrefab;
+        [SerializeField] private GameObject playerPrefab;
+        [SerializeField] private GameObject enemyPrefab;
+        [SerializeField] private EnemyStats enemyStats;
 
         private PlayerBase playerBase;
         private PlayerMovement playerMovment;
@@ -22,7 +23,7 @@ namespace Assets.Code
             playerMovment = playerObject.GetComponent<PlayerMovement>();
             playerShooting = playerObject.GetComponent<PlayerShooting>();
 
-            enemyController = new EnemyController(enemyPrefab);
+            enemyController = new EnemyController(enemyPrefab,enemyStats);
         }
         void Update()
         {

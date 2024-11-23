@@ -6,9 +6,9 @@ namespace Assets.Code.Enemy
     public class EnemySpawner
     {
         private GameObject enemyObject;
+        private EnemyStats stats;
 
         private int enemyAmount;
-        private float speedOfSpawn;
         private float lastSpawned;
 
         private float widthScreen;
@@ -16,12 +16,12 @@ namespace Assets.Code.Enemy
         private EnemyPool enemyPool;
 
 
-        public EnemySpawner(GameObject enemyObject)
+        public EnemySpawner(GameObject enemyObject, EnemyStats stats)
         {
             this.enemyObject = enemyObject;
+            this.stats = stats;
 
-            enemyAmount = 100;
-            speedOfSpawn = 0.1f;
+            enemyAmount = 200;
             lastSpawned = Time.time;
 
             CalcBoundres();
@@ -34,7 +34,7 @@ namespace Assets.Code.Enemy
         {
             enemyPool.FrameUpdate();
 
-            if ((Time.time - lastSpawned) >= speedOfSpawn)
+            if ((Time.time - lastSpawned) >= stats.SpawnSpeed)
             {
                 SpawnEnemy();
             }
@@ -44,11 +44,9 @@ namespace Assets.Code.Enemy
         {
             Transform enemy = enemyPool.GetObject();
 
-            //нельзя брать живой обьект
-
             enemy.GetComponent<Enemy>().Allive();
 
-            float rand = Random.value * 2 * 3.14f;
+            float rand = Random.value * 2 * 3.14f;  //получаем случайную точку па периметре круга
             enemy.position = new Vector3(widthScreen * Mathf.Cos(rand), widthScreen * Mathf.Sin(rand));
 
             lastSpawned = Time.time;

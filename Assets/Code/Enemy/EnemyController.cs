@@ -8,10 +8,12 @@ namespace Assets.Code.Enemy
         //Передавать противникам новые данные о здоровье, уроне и
         //увеличивать скорость появления противников с течением времени
         private EnemySpawner spawner;
+        private EnemyStats stats;
 
-        public EnemyController(GameObject enemyObject)
+        public EnemyController(GameObject enemyObject, EnemyStats stats)
         {
-            spawner =  new EnemySpawner(enemyObject);
+            this.stats = stats;
+            spawner =  new EnemySpawner(enemyObject, stats);
         }
 
         public void FrameUpdate()

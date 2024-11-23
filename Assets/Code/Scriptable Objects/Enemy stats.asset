@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ccaa373e09e9a84aa3a56b1a67636fc, type: 3}
-  m_Name: PlayerStats
+  m_Script: {fileID: 11500000, guid: 2c019a4131aa1cb4fb76ad41aa1039d9, type: 3}
+  m_Name: Enemy stats
   m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 0
-  damage: 1
-  shootingSpeed: 0
+  maxHealth: 1
+  damage: 2
+  movmentSpeed: 0.005
+  spawnSpeed: 0.1

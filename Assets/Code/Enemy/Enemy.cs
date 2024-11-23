@@ -1,46 +1,55 @@
+using Assets.Code.Player;
 using UnityEngine;
 
 namespace Assets.Code.Enemy
 {
     public class Enemy : MonoBehaviour
     {
-        [SerializeField] private float health;
-        [SerializeField] private int damage;
+        [SerializeField] EnemyStats stats;
+        [SerializeField] PlayerStats playerStats;
 
-        public void SetDamage(int newDamage)
-        {
-            damage = newDamage;
-        }
+        private float health;
+        private int damage;
 
-        public void SetHp(int newHP)
+        private void Start()
         {
-            health = newHP;
+            SetStats();
         }
 
         public void Allive()
         {
+            SetStats();
             gameObject.SetActive(true);
+        }
+
+
+        private void SetStats()
+        {
+            health = stats.MaxHealth;
+            damage = stats.Damage;
+        }
+        void Death()
+        {
+            gameObject.SetActive(false);
         }
 
         void OnCollisionEnter2D(Collision2D collision)
         {
             string tag = collision.gameObject.tag;
-            Debug.Log(tag);
             if (tag == "Bullet")
             {
-                //убавить здоровье
-                Death();
+                health -= playerStats.Damage;
+
+                if (health <= 0)
+                {
+                    Death();
+                }
             }
             if(tag == "Player")
             {
                 //нанести урон
                 Death();
             }
-        }
-
-        void Death()
-        {
-            gameObject.SetActive(false);
         }
     }
 }

@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 7467305165402138052}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5088727, y: 0.5514013, z: -0.005514594}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 679896633840581424, guid: 251934d1117783f4d9d2c7ce2fdfedc1, type: 3}
   enemyPrefab: {fileID: 2795415015033745504, guid: 0235bfbe11c629b48b00f03c2e8bedcd, type: 3}
+  enemyStats: {fileID: 11400000, guid: 0efe58dfec5a30b4e955fa984608eba8, type: 2}
