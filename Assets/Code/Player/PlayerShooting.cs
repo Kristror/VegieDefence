@@ -7,8 +7,10 @@ namespace Assets.Code.Player
     {
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private GameObject bulletStartPos;
-        [SerializeField] private float shootingSpeed;
-        [SerializeField] private int amountOfBullets;
+
+        [SerializeField] private PlayerStats playerStats;
+
+        private int amountOfBullets;
 
         private Transform bullet;
         private BulletPool bulletPool;
@@ -16,8 +18,8 @@ namespace Assets.Code.Player
 
         void Start()
         {
+
             amountOfBullets = 50;
-            shootingSpeed = 0.2f;
 
             lastShoot = Time.time;
             bulletPool = new BulletPool(amountOfBullets, bulletPrefab, bulletStartPos.transform);
@@ -34,7 +36,7 @@ namespace Assets.Code.Player
         /// </summary>
         private void Shoot()
         {
-            if ((Time.time - lastShoot) >= shootingSpeed)
+            if ((Time.time - lastShoot) >= playerStats.ShootingSpeed)
             {
                 lastShoot = Time.time;
                 bullet = bulletPool.GetObject();

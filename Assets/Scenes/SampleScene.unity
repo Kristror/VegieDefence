@@ -634,6 +634,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 0efe58dfec5a30b4e955fa984608eba8, type: 2}
     - target: {fileID: 7481310326694947041, guid: dadf92904471c1b479fb2a803e1c103d, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 77ec01ab1aaa2b549a1f8b20cc87fe46, type: 2}
+    - target: {fileID: 7481310326694947041, guid: dadf92904471c1b479fb2a803e1c103d, type: 3}
       propertyPath: PlayerObject
       value: 
       objectReference: {fileID: 679896633840581424, guid: 251934d1117783f4d9d2c7ce2fdfedc1, type: 3}

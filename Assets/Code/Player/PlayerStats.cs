@@ -22,7 +22,7 @@ namespace Assets.Code.Player
             }
             set
             { 
-                health = health + value;
+                health = value;
                 if (health > maxHealth) health = maxHealth;
             }
         }

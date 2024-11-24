@@ -7,29 +7,22 @@ namespace Assets.Code
     public class Main : MonoBehaviour
     {
         [SerializeField] private GameObject playerPrefab;
+        [SerializeField] private PlayerStats playerStats;
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private EnemyStats enemyStats;
 
-        private PlayerBase playerBase;
-        private PlayerMovement playerMovment;
-        private PlayerShooting playerShooting;
+        private PlayerController playerController;
         private EnemyController enemyController;
 
         public void Start()
         {
-            GameObject playerObject = GameObject.Instantiate(playerPrefab);
-
-            playerBase = playerObject.GetComponent<PlayerBase>();
-            playerMovment = playerObject.GetComponent<PlayerMovement>();
-            playerShooting = playerObject.GetComponent<PlayerShooting>();
+            playerController = new PlayerController(playerPrefab, playerStats);
 
             enemyController = new EnemyController(enemyPrefab,enemyStats);
         }
         void Update()
         {
-            playerBase.FrameUpdate();
-            playerMovment.FrameUpdate();
-            playerShooting.FrameUpdate();
+            playerController.FrameUpdate();
             enemyController.FrameUpdate();
         }
     }

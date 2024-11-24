@@ -8,7 +8,7 @@ namespace Assets.Code.Player
         private GameObject playerObject;
         private Camera cam;
 
-        [SerializeField] private float turningSpeed;
+        private float turningSpeed;
 
 
         private void Start()

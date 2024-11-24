@@ -45,5 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 679896633840581424, guid: 251934d1117783f4d9d2c7ce2fdfedc1, type: 3}
+  playerStats: {fileID: 11400000, guid: 77ec01ab1aaa2b549a1f8b20cc87fe46, type: 2}
   enemyPrefab: {fileID: 2795415015033745504, guid: 0235bfbe11c629b48b00f03c2e8bedcd, type: 3}
   enemyStats: {fileID: 11400000, guid: 0efe58dfec5a30b4e955fa984608eba8, type: 2}

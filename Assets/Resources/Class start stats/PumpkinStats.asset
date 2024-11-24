@@ -15,4 +15,4 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   damage: 1
-  shootingSpeed: 0.01
+  shootingSpeed: 0.7

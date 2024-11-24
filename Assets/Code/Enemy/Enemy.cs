@@ -36,7 +36,7 @@ namespace Assets.Code.Enemy
         void OnCollisionEnter2D(Collision2D collision)
         {
             string tag = collision.gameObject.tag;
-            if (tag == "Bullet")
+            if (tag.Equals("Bullet"))
             {
                 health -= playerStats.Damage;
 
@@ -45,9 +45,9 @@ namespace Assets.Code.Enemy
                     Death();
                 }
             }
-            if(tag == "Player")
+            if(tag.Equals("Player"))
             {
-                //нанести урон
+                collision.gameObject.GetComponent<PlayerStatsController>().Hurt(damage);
                 Death();
             }
         }
