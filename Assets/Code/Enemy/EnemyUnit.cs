@@ -1,12 +1,16 @@
 using Assets.Code.Player;
+using System;
 using UnityEngine;
 
 namespace Assets.Code.Enemy
 {
-    public class Enemy : MonoBehaviour
+    public class EnemyUnit : MonoBehaviour
     {
         [SerializeField] EnemyStats stats;
         [SerializeField] PlayerStats playerStats;
+
+
+        public static Action onEnemyDeath;
 
         private float health;
         private int damage;
@@ -30,6 +34,7 @@ namespace Assets.Code.Enemy
         }
         void Death()
         {
+            onEnemyDeath?.Invoke();
             gameObject.SetActive(false);
         }
 

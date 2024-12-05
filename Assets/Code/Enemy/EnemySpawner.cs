@@ -44,7 +44,7 @@ namespace Assets.Code.Enemy
         {
             Transform enemy = enemyPool.GetObject();
 
-            enemy.GetComponent<Enemy>().Allive();
+            enemy.GetComponent<EnemyUnit>().Allive();
 
             float rand = Random.value * 2 * 3.14f;  //получаем случайную точку па периметре круга
             enemy.position = new Vector3(widthScreen * Mathf.Cos(rand), widthScreen * Mathf.Sin(rand));
