@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Code.Score
 {
-    public class ScoreController : MonoBehaviour
+    public class ScoreController
     {
         private long playerScore;
 
@@ -25,7 +25,7 @@ namespace Assets.Code.Score
             playerScore += 100;
         }
 
-        public void FixedUpdate()
+        public void FrameUpdate()
         {
             SecondPased();
         }

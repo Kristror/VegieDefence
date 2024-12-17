@@ -1,16 +1,43 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+namespace Assets.Code.UI
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class MainMenu : MonoBehaviour
     {
-        
-    }
+        [SerializeField] Button startGame;
+        [SerializeField] Button settings;
+        [SerializeField] Button quit;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [SerializeField] SettingsMenu settingsMenu;
+        [SerializeField] Main mainObject;
+
+        private void Start()
+        {
+            startGame.onClick.AddListener(GameStart);
+            settings.onClick.AddListener(OpenSettings);
+            quit.onClick.AddListener(CloseGame);
+        }
+
+        private void GameStart()
+        {
+            mainObject.StartGame(); 
+            this.gameObject.SetActive(false);
+        }
+
+        private void OpenSettings()
+        {
+            settingsMenu.OpenSettingsMenu();
+            this.gameObject.SetActive(false);
+        }
+        public void OpenMainMenu()
+        {
+            this.gameObject.SetActive(true);
+        }
+
+        private void CloseGame()
+        {
+            Application.Quit();
+        }
     }
 }

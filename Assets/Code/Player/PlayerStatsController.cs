@@ -1,6 +1,5 @@
-﻿using Assets.Code.Enemy;
-using Unity.VisualScripting;
-using UnityEditor;
+﻿using Assets.Code.UI;
+using System;
 using UnityEngine;
 
 namespace Assets.Code.Player
@@ -8,6 +7,7 @@ namespace Assets.Code.Player
     public class PlayerStatsController : MonoBehaviour
     {
         [SerializeField] private PlayerStats playerStats;
+        [SerializeField] private InGameUIController uiController;
 
         private ClasesEnum baseClass;
 
@@ -52,6 +52,7 @@ namespace Assets.Code.Player
         public void Hurt(int amount)
         {
             playerStats.Health -= amount;
+            CheckHealth();
         }
 
         /// <summary>
@@ -86,6 +87,27 @@ namespace Assets.Code.Player
         public void ShootingSpeedUP(float duration)
         {
             //Временное  увеличение скорости стрельбы
+        }
+
+        /// <summary>
+        /// Проверяет уровень издоровья игрока, следит за смертью
+        /// </summary>
+        private void CheckHealth()
+        {
+            if (playerStats.Health < (playerStats.MaxHealth * 0.25))
+            {
+                //эффект низкого здоровья
+            }
+            if (playerStats.Health <= 0)
+            {
+                Death();
+            }
+        }
+
+        private void Death()
+        {
+            Time.timeScale = 0;
+            uiController.PlayerDeath();
         }
     }
 }

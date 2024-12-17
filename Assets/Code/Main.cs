@@ -1,6 +1,7 @@
 using UnityEngine;
 using Assets.Code.Player;
 using Assets.Code.Enemy;
+using Assets.Code.Score;
 
 namespace Assets.Code
 {
@@ -13,17 +14,21 @@ namespace Assets.Code
 
         private PlayerController playerController;
         private EnemyController enemyController;
+        private ScoreController scoreController;
 
-        public void Start()
+        public void StartGame()
         {
             playerController = new PlayerController(playerPrefab, playerStats);
 
             enemyController = new EnemyController(enemyPrefab,enemyStats);
+
+            scoreController = new ScoreController();
         }
         void Update()
         {
             playerController.FrameUpdate();
             enemyController.FrameUpdate();
+            scoreController.FrameUpdate();
         }
     }
 }
