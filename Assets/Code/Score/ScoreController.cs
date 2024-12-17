@@ -1,20 +1,17 @@
 ﻿using Assets.Code.Enemy;
-using System;
 using UnityEngine;
 
 namespace Assets.Code.Score
 {
     public class ScoreController
     {
-        private long playerScore;
-
-        public Action onEnemyDeath;
+        private static long playerScore;
 
         float timeOfPoint;
 
-        public long PLayerScore => playerScore;
+        public static long PLayerScore => playerScore;
 
-        public void Start()
+        public ScoreController()
         {
             EnemyUnit.onEnemyDeath += KilledEnemy;
             timeOfPoint = 0;

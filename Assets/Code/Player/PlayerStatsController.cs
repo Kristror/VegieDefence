@@ -7,7 +7,8 @@ namespace Assets.Code.Player
     public class PlayerStatsController : MonoBehaviour
     {
         [SerializeField] private PlayerStats playerStats;
-        [SerializeField] private InGameUIController uiController;
+
+        public static Action PlayerDeath;
 
         private ClasesEnum baseClass;
 
@@ -107,7 +108,7 @@ namespace Assets.Code.Player
         private void Death()
         {
             Time.timeScale = 0;
-            uiController.PlayerDeath();
+            PlayerDeath.Invoke();
         }
     }
 }

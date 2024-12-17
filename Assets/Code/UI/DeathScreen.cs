@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Code.Score;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,8 +19,11 @@ namespace Assets.Code.UI
             reviveButton.onClick.AddListener(Revive);
         }
 
-        public void PlayerDeath(string score)
+        public void PlayerDeath()
         {
+            this.gameObject.SetActive(true);
+
+            string score = ScoreController.PLayerScore.ToString();
             scoreText.text = score;
         }
                     

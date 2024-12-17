@@ -1,15 +1,57 @@
-﻿using UnityEditor;
+﻿using Assets.Code.Player;
+using System;
 using UnityEngine;
 
 namespace Assets.Code.UI
 {
     public class InGameUIController : MonoBehaviour
     {
+        [SerializeField] MainMenu mainMenu;
+        [SerializeField] SettingsMenu settingsMenu;
         [SerializeField] DeathScreen deathScreen;
+        [SerializeField] PauseMenu pauseMenu;
 
-        public void PlayerDeath()
+        [SerializeField] GameObject background;
+
+        public void Start()
         {
-            deathScreen.PlayerDeath("0");
+            PlayerStatsController.PlayerDeath += ShowDeathScreen;
+
+            ShowBackground();
+            ShowMainMenu();
         }
+
+        public void ShowMainMenu()
+        {
+            mainMenu.OpenMainMenu(ShowSettings, HideBackground);
+        }
+
+        public void ShowSettings()
+        {
+            settingsMenu.OpenSettingsMenu(ShowMainMenu);
+        }
+
+        public void ShowDeathScreen()
+        {
+            ShowBackground();
+            deathScreen.PlayerDeath(); 
+        }
+
+        public void ShowPause()
+        {
+            ShowBackground();
+        }
+
+        private void ShowBackground()
+        {
+            background.SetActive(true);
+        }
+        
+        private void HideBackground()
+        {
+            background.SetActive(false);
+        }
+
+        
     }
 }

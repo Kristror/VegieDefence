@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace Assets.Code.UI
 {
@@ -14,7 +14,8 @@ namespace Assets.Code.UI
         [SerializeField] Button changeLanguageRussian;
         [SerializeField] Button changeLanguageEnglish;
 
-        [SerializeField] MainMenu mainMenu;
+
+        private Action OpenMainMenu;
 
         private void Start()
         {
@@ -24,19 +25,17 @@ namespace Assets.Code.UI
             loadProgress.onClick.AddListener(LoadProgress);
             changeLanguageRussian.onClick.AddListener(ChangeLanguageRussian);
             changeLanguageEnglish.onClick.AddListener(ChangeLanguageEnglish);
-
-
-            this.gameObject.SetActive(false);
         }
 
-        public void OpenSettingsMenu()
+        public void OpenSettingsMenu(Action mainMenu)
         {
+            OpenMainMenu = mainMenu; 
             this.gameObject.SetActive(true);
         }
 
         private void Close()
         {
-            mainMenu.OpenMainMenu();
+            OpenMainMenu.Invoke();
             this.gameObject.SetActive(false);
         }
 

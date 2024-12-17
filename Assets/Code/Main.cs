@@ -18,12 +18,15 @@ namespace Assets.Code
 
         public void StartGame()
         {
+            this.gameObject.SetActive(true);
+
             playerController = new PlayerController(playerPrefab, playerStats);
 
             enemyController = new EnemyController(enemyPrefab,enemyStats);
 
             scoreController = new ScoreController();
         }
+
         void Update()
         {
             playerController.FrameUpdate();

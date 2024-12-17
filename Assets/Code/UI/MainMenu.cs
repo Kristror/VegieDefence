@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace Assets.Code.UI
 {
@@ -9,8 +10,10 @@ namespace Assets.Code.UI
         [SerializeField] Button settings;
         [SerializeField] Button quit;
 
-        [SerializeField] SettingsMenu settingsMenu;
         [SerializeField] Main mainObject;
+
+        private Action OpenSettingsAction;
+        private Action CloseBackground;
 
         private void Start()
         {
@@ -21,17 +24,22 @@ namespace Assets.Code.UI
 
         private void GameStart()
         {
-            mainObject.StartGame(); 
+            mainObject.StartGame();
+            CloseBackground.Invoke();
             this.gameObject.SetActive(false);
         }
 
         private void OpenSettings()
         {
-            settingsMenu.OpenSettingsMenu();
             this.gameObject.SetActive(false);
+            OpenSettingsAction.Invoke();
         }
-        public void OpenMainMenu()
+
+        public void OpenMainMenu(Action settings, Action closeBackground)
         {
+            OpenSettingsAction = settings;
+            CloseBackground = closeBackground;
+
             this.gameObject.SetActive(true);
         }
 
