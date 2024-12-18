@@ -6,25 +6,25 @@ namespace Assets.Code.UI
 {
     public class SettingsMenu : MonoBehaviour
     {
-        [SerializeField] Button closeMenu;
+        [SerializeField] Button closeMenuButton;
         [SerializeField] Slider volumeSlider;
-        [SerializeField] Button saveProgress;
-        [SerializeField] Button loadProgress;
+        [SerializeField] Button saveProgressButton;
+        [SerializeField] Button loadProgressButton;
 
-        [SerializeField] Button changeLanguageRussian;
-        [SerializeField] Button changeLanguageEnglish;
+        [SerializeField] Button changeLanguageRussianButton;
+        [SerializeField] Button changeLanguageEnglishButton;
 
 
         private Action OpenMainMenu;
 
         private void Start()
         {
-            closeMenu.onClick.AddListener(Close);
+            closeMenuButton.onClick.AddListener(Close);
             volumeSlider.onValueChanged.AddListener(ChangeVolume);
-            saveProgress.onClick.AddListener(SaveProgress);
-            loadProgress.onClick.AddListener(LoadProgress);
-            changeLanguageRussian.onClick.AddListener(ChangeLanguageRussian);
-            changeLanguageEnglish.onClick.AddListener(ChangeLanguageEnglish);
+            saveProgressButton.onClick.AddListener(SaveProgress);
+            loadProgressButton.onClick.AddListener(LoadProgress);
+            changeLanguageRussianButton.onClick.AddListener(ChangeLanguageRussian);
+            changeLanguageEnglishButton.onClick.AddListener(ChangeLanguageEnglish);
         }
 
         public void OpenSettingsMenu(Action mainMenu)

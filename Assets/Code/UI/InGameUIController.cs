@@ -16,6 +16,7 @@ namespace Assets.Code.UI
         public void Start()
         {
             PlayerStatsController.PlayerDeath += ShowDeathScreen;
+            PauseController.ActivatePause += ShowPause;
 
             ShowBackground();
             ShowMainMenu();
@@ -40,6 +41,7 @@ namespace Assets.Code.UI
         public void ShowPause()
         {
             ShowBackground();
+            pauseMenu.OpenPause();
         }
 
         private void ShowBackground()
@@ -51,7 +53,6 @@ namespace Assets.Code.UI
         {
             background.SetActive(false);
         }
-
         
     }
 }

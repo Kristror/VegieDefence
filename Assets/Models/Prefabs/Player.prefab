@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 11400000, guid: 77ec01ab1aaa2b549a1f8b20cc87fe46, type: 2}
-  uiController: {fileID: 0}
 --- !u!1 &774182725610824773
 GameObject:
   m_ObjectHideFlags: 0
