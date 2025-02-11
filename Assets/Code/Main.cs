@@ -28,10 +28,12 @@ namespace Assets.Code
         }
 
         void Update()
-        {
-            playerController.FrameUpdate();
-            enemyController.FrameUpdate();
-            scoreController.FrameUpdate();
+        {   if (Time.timeScale != 0)
+            {
+                playerController.FrameUpdate();
+                enemyController.FrameUpdate();
+                scoreController.FrameUpdate();
+            }
         }
     }
 }

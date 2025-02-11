@@ -10,7 +10,7 @@ namespace Assets.Code.Enemy
         [SerializeField] PlayerStats playerStats;
 
 
-        public static Action onEnemyDeath;
+        public static Action onEnemyKilled;
 
         private float health;
         private int damage;
@@ -32,9 +32,13 @@ namespace Assets.Code.Enemy
             health = stats.MaxHealth;
             damage = stats.Damage;
         }
+        void Killed()
+        {
+            onEnemyKilled?.Invoke();
+            gameObject.SetActive(false);
+        }
         void Death()
         {
-            onEnemyDeath?.Invoke();
             gameObject.SetActive(false);
         }
 
@@ -47,10 +51,17 @@ namespace Assets.Code.Enemy
 
                 if (health <= 0)
                 {
-                    Death();
+                    Killed();
                 }
             }
-            if(tag.Equals("Player"))
+
+            if (tag.Equals("ArealRevive"))
+            {
+                Death();
+
+            }
+
+            if (tag.Equals("Player"))
             {
                 collision.gameObject.GetComponent<PlayerStatsController>().Hurt(damage);
                 Death();

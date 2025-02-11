@@ -1,5 +1,5 @@
 ﻿using Assets.Code.Score;
-using System.Collections;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,18 +13,27 @@ namespace Assets.Code.UI
         [SerializeField] Button reviveButton;
         [SerializeField] TextMeshProUGUI scoreText;
 
+        [SerializeField] RecordController recordController;
+
+        public static Action PlayerRevive;
+
+        public  Action ShowInGameUI;
+
         private void Start()
         {
             backToMenuButton.onClick.AddListener(BackToMenu);
             reviveButton.onClick.AddListener(Revive);
         }
 
-        public void PlayerDeath()
+        public void PlayerDeath(Action ShowInGameUI)
         {
             this.gameObject.SetActive(true);
+            this.ShowInGameUI = ShowInGameUI;
 
-            string score = ScoreController.PLayerScore.ToString();
-            scoreText.text = score;
+            long score = ScoreController.PLayerScore;
+            scoreText.text = score.ToString(); ;
+
+            recordController.UpdateScore(score);
         }
                     
         private void BackToMenu()
@@ -35,10 +44,10 @@ namespace Assets.Code.UI
 
         private void Revive()
         {
-            //Показать рекламу
-            //вернуть игроку половину здоровья 
-            //продолжить игру
-
+            ShowInGameUI?.Invoke();
+            this.gameObject.SetActive(false);
+            Time.timeScale = 1;
+            PlayerRevive?.Invoke();
         }
     }
 }

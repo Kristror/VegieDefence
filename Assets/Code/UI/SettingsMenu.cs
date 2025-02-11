@@ -35,7 +35,7 @@ namespace Assets.Code.UI
 
         private void Close()
         {
-            OpenMainMenu.Invoke();
+            OpenMainMenu?.Invoke();
             this.gameObject.SetActive(false);
         }
 

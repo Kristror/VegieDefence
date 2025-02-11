@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ namespace Assets.Code.UI
         [SerializeField] Button resumeButton;
         [SerializeField] Button BackToMenuButton;
 
+        Action hideBackground;
 
         private void Start()
         {
@@ -18,14 +20,16 @@ namespace Assets.Code.UI
             BackToMenuButton.onClick.AddListener(BackToMenu);
         }
 
-        public void OpenPause()
+        public void OpenPause(Action hideBackground)
         {
+            this .hideBackground = hideBackground;
             this.gameObject.SetActive(true);
             Time.timeScale = 0;
         }
 
         private void Resume()
         {
+            hideBackground?.Invoke();    
             this.gameObject.SetActive(false);
             Time.timeScale = 1;
         }

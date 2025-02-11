@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Assets.Code.Enemy
 {
 
-    [CreateAssetMenu(fileName = "MyTool/EnemyStats", menuName = "Enemy stats")]
+    [CreateAssetMenu(fileName = "EnemyStats", menuName = "MyTools/Enemy stats")]
     public class EnemyStats : ScriptableObject
     {
         [SerializeField] private int maxHealth;

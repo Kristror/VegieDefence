@@ -1,4 +1,6 @@
 ﻿using Assets.Code.Enemy;
+using Assets.Code.UI;
+using System;
 using UnityEngine;
 
 namespace Assets.Code.Score
@@ -11,15 +13,24 @@ namespace Assets.Code.Score
 
         public static long PLayerScore => playerScore;
 
+        public static Action ScoreUpdated;
+
         public ScoreController()
         {
-            EnemyUnit.onEnemyDeath += KilledEnemy;
+            EnemyUnit.onEnemyKilled += KilledEnemy;
+            DeathScreen.PlayerRevive += Revived;
             timeOfPoint = 0;
         }
 
         public void KilledEnemy()
         {
-            playerScore += 100;
+            playerScore += 20;
+            UpdateUI();
+        }
+
+        private void Revived()
+        {
+            playerScore = playerScore - (playerScore / 4);
         }
 
         public void FrameUpdate()
@@ -34,7 +45,14 @@ namespace Assets.Code.Score
                 timeOfPoint = Time.time;
 
                 playerScore += 2;
+
+                UpdateUI();
             }
+        }
+
+        private void UpdateUI()
+        {
+            ScoreUpdated?.Invoke();
         }
     }
 }

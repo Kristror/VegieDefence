@@ -13,7 +13,7 @@ namespace Assets.Code.UI
         [SerializeField] Main mainObject;
 
         private Action OpenSettingsAction;
-        private Action CloseBackground;
+        private Action ShowInGameUI;
 
         private void Start()
         {
@@ -22,26 +22,26 @@ namespace Assets.Code.UI
             quit.onClick.AddListener(CloseGame);
         }
 
+        public void OpenMainMenu(Action settings, Action showInGameUI)
+        {
+            OpenSettingsAction = settings;
+            ShowInGameUI = showInGameUI;
+
+            this.gameObject.SetActive(true);
+        }
+
         private void GameStart()
         {
             mainObject.StartGame();
-            CloseBackground.Invoke();
+            ShowInGameUI?.Invoke();
             this.gameObject.SetActive(false);
         }
 
         private void OpenSettings()
         {
             this.gameObject.SetActive(false);
-            OpenSettingsAction.Invoke();
-        }
-
-        public void OpenMainMenu(Action settings, Action closeBackground)
-        {
-            OpenSettingsAction = settings;
-            CloseBackground = closeBackground;
-
-            this.gameObject.SetActive(true);
-        }
+            OpenSettingsAction?.Invoke();
+        }        
 
         private void CloseGame()
         {

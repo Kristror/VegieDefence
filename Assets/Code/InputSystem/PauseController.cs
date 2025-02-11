@@ -8,19 +8,23 @@ namespace Assets.Code.UI
     {
         public static Action ActivatePause;
 
-        private PauseInputSystem inputSystem;
+        InputAction jumpAction;
+
+        private InputControls inputSystem;
 
         private void Start()
         {
-            inputSystem = new PauseInputSystem();
+            inputSystem = new InputControls();
 
-            inputSystem.Pause.Pause.performed += Pause;
+            inputSystem.Enable();
+
+            inputSystem.PauseImput.Pause.performed += Pause;
         }
+
 
         private void Pause(InputAction.CallbackContext context)
         {
-            ActivatePause.Invoke();
-            Debug.Log("Prees");
+            ActivatePause?.Invoke();
         }
     }
 }

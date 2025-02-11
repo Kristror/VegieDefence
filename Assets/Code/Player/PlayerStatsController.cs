@@ -31,6 +31,8 @@ namespace Assets.Code.Player
             playerStats.Health = baseStats.Health;
             playerStats.Damage = baseStats.Damage;
             playerStats.ShootingSpeed = baseStats.ShootingSpeed;
+
+            DeathScreen.PlayerRevive += Revive;
         }
 
         public void SetClass(ClasesEnum clasesEnum) // временное решение до появления интерфейса
@@ -108,7 +110,12 @@ namespace Assets.Code.Player
         private void Death()
         {
             Time.timeScale = 0;
-            PlayerDeath.Invoke();
+            PlayerDeath?.Invoke();
+        }
+
+        private void Revive()
+        {
+            Heal(playerStats.MaxHealth / 2);
         }
     }
 }

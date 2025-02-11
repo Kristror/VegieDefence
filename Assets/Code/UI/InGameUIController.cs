@@ -10,10 +10,12 @@ namespace Assets.Code.UI
         [SerializeField] SettingsMenu settingsMenu;
         [SerializeField] DeathScreen deathScreen;
         [SerializeField] PauseMenu pauseMenu;
+        [SerializeField] ScoreUI scoreUI;
+
 
         [SerializeField] GameObject background;
 
-        public void Start()
+        private void Start()
         {
             PlayerStatsController.PlayerDeath += ShowDeathScreen;
             PauseController.ActivatePause += ShowPause;
@@ -22,28 +24,39 @@ namespace Assets.Code.UI
             ShowMainMenu();
         }
 
-        public void ShowMainMenu()
+        private void ShowMainMenu()
         {
-            mainMenu.OpenMainMenu(ShowSettings, HideBackground);
+            mainMenu.OpenMainMenu(ShowSettings, ShowInGameUI);
         }
 
-        public void ShowSettings()
+        private void ShowSettings()
         {
             settingsMenu.OpenSettingsMenu(ShowMainMenu);
         }
 
-        public void ShowDeathScreen()
+        private void ShowDeathScreen()
         {
             ShowBackground();
-            deathScreen.PlayerDeath(); 
+            HideInGameUI();
+            deathScreen.PlayerDeath(ShowInGameUI); 
         }
 
-        public void ShowPause()
+        private void ShowPause()
         {
             ShowBackground();
-            pauseMenu.OpenPause();
+            pauseMenu.OpenPause(HideBackground);
         }
 
+        private void ShowInGameUI() 
+        {
+            HideBackground();
+            scoreUI.Activate();
+        }
+        private void HideInGameUI() 
+        {
+            scoreUI.gameObject.SetActive(false);
+        }
+        
         private void ShowBackground()
         {
             background.SetActive(true);
