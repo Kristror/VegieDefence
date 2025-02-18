@@ -22,6 +22,14 @@ namespace Assets.Code.Score
             timeOfPoint = 0;
         }
 
+        /// <summary>
+        /// Увеличивает счет игрока на 10%
+        /// </summary>
+        public static void Booster()
+        {
+            playerScore += ((long)(playerScore * 0.1)); 
+        }
+
         public void KilledEnemy()
         {
             playerScore += 20;

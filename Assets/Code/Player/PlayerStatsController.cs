@@ -6,7 +6,7 @@ namespace Assets.Code.Player
 {
     public class PlayerStatsController : MonoBehaviour
     {
-        [SerializeField] private PlayerStats playerStats;
+        [SerializeField] private static PlayerStats playerStats;
 
         public static Action PlayerDeath;
 
@@ -44,7 +44,7 @@ namespace Assets.Code.Player
         /// <summary>
         /// Лечит игрока
         /// </summary>
-        public void Heal(int amount)
+        public static void Heal(int amount)
         {
             playerStats.Health += amount;
         }
@@ -74,11 +74,6 @@ namespace Assets.Code.Player
             playerStats.Damage++;
         }
 
-        public void DamageUP(float duration)
-        {
-            //Временное  увеличение урона
-        }
-
         /// <summary>
         /// Увеличивает скорость стрельбы
         /// </summary>
@@ -87,9 +82,12 @@ namespace Assets.Code.Player
             playerStats.ShootingSpeed++;
         }
 
-        public void ShootingSpeedUP(float duration)
+        /// <summary>
+        /// Включает удвоение урона
+        /// </summary>
+        public static void Booster()
         {
-            //Временное  увеличение скорости стрельбы
+            playerStats.Booster();
         }
 
         /// <summary>
@@ -107,12 +105,18 @@ namespace Assets.Code.Player
             }
         }
 
+        /// <summary>
+        /// Активирует смерть
+        /// </summary>
         private void Death()
         {
             Time.timeScale = 0;
             PlayerDeath?.Invoke();
         }
 
+        /// <summary>
+        /// Активирует возрождение
+        /// </summary>
         private void Revive()
         {
             Heal(playerStats.MaxHealth / 2);

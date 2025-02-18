@@ -12,6 +12,7 @@ namespace Assets.Code.UI
         [SerializeField] Button backToMenuButton; 
         [SerializeField] Button reviveButton;
         [SerializeField] TextMeshProUGUI scoreText;
+        [SerializeField] TextMeshProUGUI bestcoreText;
 
         [SerializeField] RecordController recordController;
 
@@ -31,9 +32,10 @@ namespace Assets.Code.UI
             this.ShowInGameUI = ShowInGameUI;
 
             long score = ScoreController.PLayerScore;
-            scoreText.text = score.ToString(); ;
 
             recordController.UpdateScore(score);
+            scoreText.text = "Score: " + score.ToString();
+            bestcoreText.text = "Best score: " + recordController.BestScore;
         }
                     
         private void BackToMenu()

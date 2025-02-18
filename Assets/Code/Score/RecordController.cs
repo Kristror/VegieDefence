@@ -7,12 +7,16 @@ namespace Assets.Code.Score
     {
         [SerializeField] Record playerRecord;
 
+        public long BestScore => playerRecord.RecordScore;
+
         public void UpdateScore(long newScore)
         {
-            if ((playerRecord != null) && (playerRecord.RecordScore < newScore))
+            if (playerRecord.RecordScore < newScore)
             {
                 playerRecord.RecordScore = newScore;
             }
         }
+       
+        
     }
 }

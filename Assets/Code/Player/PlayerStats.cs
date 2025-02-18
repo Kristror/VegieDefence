@@ -9,8 +9,10 @@ namespace Assets.Code.Player
         [SerializeField] private int maxHealth;
 
         [SerializeField] private int damage;
-        [SerializeField] private float shootingSpeed;  
-        
+        [SerializeField] private float shootingSpeed;
+
+        private int booster = 1;
+
         /// <summary>
         /// Здоровье игрока
         /// </summary>
@@ -70,7 +72,7 @@ namespace Assets.Code.Player
         {
             get
             {
-                return shootingSpeed;
+                return shootingSpeed * booster;
             }
             set
             {
@@ -81,6 +83,16 @@ namespace Assets.Code.Player
             }
         }
 
-       
+        /// <summary>
+        /// Удвоение скорости стрельбы
+        /// </summary>
+        public void Booster()
+        {
+            if (booster == 1)
+            {
+                booster = 2;
+            }
+            else booster = 1;
+        }
     }
 }
