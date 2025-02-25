@@ -6,7 +6,7 @@ namespace Assets.Code.Player
 {
     public class PlayerStatsController : MonoBehaviour
     {
-        [SerializeField] private static PlayerStats playerStats;
+        [SerializeField] public static PlayerStats playerStats;
 
         public static Action PlayerDeath;
 
@@ -14,6 +14,8 @@ namespace Assets.Code.Player
 
         public void Start()
         {
+            playerStats = Resources.Load<PlayerStats>("PlayerStats");
+
             PlayerStats baseStats;
 
             string classPath = "Class start stats/PotatoStats"; 
@@ -23,6 +25,8 @@ namespace Assets.Code.Player
                 case ClasesEnum.Potato: classPath = "Class start stats/PotatoStats"; break;
                 case ClasesEnum.Onion: classPath = "Class start stats/OnionStats"; break;
                 case ClasesEnum.Pumpkin: classPath = "Class start stats/PumpkinStats"; break;
+
+                default: classPath = "Class start stats/PotatoStats"; break;
             }
 
             baseStats = Resources.Load<PlayerStats>(classPath);

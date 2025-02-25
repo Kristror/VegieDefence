@@ -1,6 +1,7 @@
 using UnityEngine;
 using Assets.Code.Player;
 using Assets.Code.Enemy;
+using Assets.Code.Boosters;
 using Assets.Code.Score;
 
 namespace Assets.Code
@@ -11,9 +12,11 @@ namespace Assets.Code
         [SerializeField] private PlayerStats playerStats;
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private EnemyStats enemyStats;
+        [SerializeField] private GameObject boosterPrefab;
 
         private PlayerController playerController;
         private EnemyController enemyController;
+        private BoosterController boosterController;
         private ScoreController scoreController;
 
         public void StartGame()
@@ -24,6 +27,8 @@ namespace Assets.Code
 
             enemyController = new EnemyController(enemyPrefab,enemyStats);
 
+            boosterController = new BoosterController(boosterPrefab);
+
             scoreController = new ScoreController();
         }
 
@@ -32,6 +37,7 @@ namespace Assets.Code
             {
                 playerController.FrameUpdate();
                 enemyController.FrameUpdate();
+                boosterController.FrameUpdate();
                 scoreController.FrameUpdate();
             }
         }

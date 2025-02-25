@@ -10,17 +10,15 @@ namespace Assets.Code.Player
 
         [SerializeField] private PlayerStats playerStats;
 
-        private int amountOfBullets;
+       
 
         private Transform bullet;
-        private BulletPool bulletPool;
+        private BulletPool bulletPool; 
+        private const int amountOfBullets = 50;
         private float lastShoot;
 
         void Start()
         {
-
-            amountOfBullets = 50;
-
             lastShoot = Time.time;
             bulletPool = new BulletPool(amountOfBullets, bulletPrefab, bulletStartPos.transform);
         }
@@ -39,10 +37,9 @@ namespace Assets.Code.Player
             if ((Time.time - lastShoot) >= playerStats.ShootingSpeed)
             {
                 lastShoot = Time.time;
-                bullet = bulletPool.GetObject();
+                bullet = bulletPool.GetNextItem();
 
                 bullet.transform.position = bulletStartPos.transform.position;
-                //bullet.transform.rotation = bulletStartPos.transform.rotation;
 
                 bullet.GetComponent<BulletMovement>().Shoot();
             }

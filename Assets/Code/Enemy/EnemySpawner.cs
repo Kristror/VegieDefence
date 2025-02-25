@@ -7,13 +7,12 @@ namespace Assets.Code.Enemy
     {
         private GameObject enemyObject;
         private EnemyStats stats;
-
-        private int enemyAmount;
         private float lastSpawned;
 
         private float widthScreen;
 
         private EnemyPool enemyPool;
+        private const int enemyPollLength = 200;
 
 
         public EnemySpawner(GameObject enemyObject, EnemyStats stats)
@@ -21,12 +20,12 @@ namespace Assets.Code.Enemy
             this.enemyObject = enemyObject;
             this.stats = stats;
 
-            enemyAmount = 200;
+            
             lastSpawned = Time.time;
 
             CalcBoundres();
 
-            enemyPool = new EnemyPool(enemyAmount, this.enemyObject);
+            enemyPool = new EnemyPool(enemyPollLength, this.enemyObject);
 
         }
 
@@ -42,7 +41,7 @@ namespace Assets.Code.Enemy
 
         private void SpawnEnemy()
         {
-            Transform enemy = enemyPool.GetObject();
+            Transform enemy = enemyPool.GetNextItem();
 
             enemy.GetComponent<EnemyUnit>().Allive();
 

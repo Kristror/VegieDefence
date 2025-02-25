@@ -40,6 +40,7 @@ namespace Assets.Code.UI
                     
         private void BackToMenu()
         {
+            Time.timeScale = 1;
             string currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceneName);
         }
@@ -48,7 +49,6 @@ namespace Assets.Code.UI
         {
             ShowInGameUI?.Invoke();
             this.gameObject.SetActive(false);
-            Time.timeScale = 1;
             PlayerRevive?.Invoke();
         }
     }

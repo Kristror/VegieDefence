@@ -8,11 +8,10 @@ namespace Assets.Code.Boosters
     public class Booster : BoosterBase
     {
         BoosterTypeEnum type;
-        private void Activate()
+        public void Activate()
         {
-            this.gameObject.SetActive(false);
+            this.gameObject.SetActive(true);
             ChooseEfect();
-            ChangeTexture();
         }
 
         private void ChooseEfect()
@@ -29,17 +28,13 @@ namespace Assets.Code.Boosters
             }
         }
 
-        private void ChangeTexture()
-        {
-
-        }
-
         void OnCollisionEnter2D(Collision2D collision)
         {
             string tag = collision.gameObject.tag;
             if (tag.Equals("Bullet"))
             {
                 Effect.Invoke();
+                Deactivate();
             }
         }
 

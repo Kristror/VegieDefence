@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e7fcadfbcdfb54297a72cbf2a9faa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 11400000, guid: 77ec01ab1aaa2b549a1f8b20cc87fe46, type: 2}
 --- !u!114 &6869831910687228027
 MonoBehaviour:
   m_ObjectHideFlags: 0

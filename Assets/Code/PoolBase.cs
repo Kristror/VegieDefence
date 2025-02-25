@@ -17,7 +17,7 @@ namespace Assets.Code
         /// <summary>
         /// Передает следующий объект
         /// </summary>
-        public Transform GetObject()
+        public Transform GetNextItem()
         {
             poolCount++;
             if (poolCount == poolLenght)

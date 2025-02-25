@@ -72,7 +72,7 @@ namespace Assets.Code.Player
         {
             get
             {
-                return shootingSpeed * booster;
+                return shootingSpeed / booster;
             }
             set
             {
