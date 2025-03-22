@@ -3,6 +3,7 @@ using Assets.Code.Player;
 using Assets.Code.Enemy;
 using Assets.Code.Boosters;
 using Assets.Code.Score;
+using System;
 
 namespace Assets.Code
 {
@@ -13,13 +14,13 @@ namespace Assets.Code
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private EnemyStats enemyStats;
         [SerializeField] private GameObject boosterPrefab;
+        [SerializeField] private ScoreController scoreController;
 
         private PlayerController playerController;
         private EnemyController enemyController;
         private BoosterController boosterController;
-        private ScoreController scoreController;
 
-        public void StartGame()
+        public void StartGame(Action Subscribe)
         {
             this.gameObject.SetActive(true);
 
@@ -29,7 +30,7 @@ namespace Assets.Code
 
             boosterController = new BoosterController(boosterPrefab);
 
-            scoreController = new ScoreController();
+            Subscribe.Invoke();
         }
 
         void Update()

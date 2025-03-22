@@ -41,16 +41,16 @@ namespace Assets.Code.Boosters
         private void Heal()
         {
             int healAmount = 50;
-            PlayerStatsController.Heal(healAmount);
+            GameObject.Find("MainObject").GetComponent<PlayerStatsController>().Heal(healAmount);
         }
         private void ShootingSpeedUP()
         {
             //Уведомить контроллер, он начнет таймер
-            PlayerStatsController.Booster();
+            GameObject.Find("Player").GetComponent<PlayerStatsController>().Booster();
         }
         private void ScoreUP()
         {
-            ScoreController.Booster();
+            GameObject.Find("MainObject").GetComponent<ScoreController>().Booster();
         }
 
         public override void Deactivate()

@@ -595,6 +595,7 @@ MonoBehaviour:
   scoreText: {fileID: 811034602}
   bestcoreText: {fileID: 1170454621}
   recordController: {fileID: 7194633713656357942}
+  scoreController: {fileID: 7194633713656357945}
 --- !u!1 &235228180
 GameObject:
   m_ObjectHideFlags: 0
@@ -4362,6 +4363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 235228182}
+  scoreController: {fileID: 7194633713656357945}
 --- !u!1 &1389851083
 GameObject:
   m_ObjectHideFlags: 0
@@ -6171,6 +6173,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5015065120395663081, guid: dadf92904471c1b479fb2a803e1c103d, type: 3}
+      propertyPath: deathScreen
+      value: 
+      objectReference: {fileID: 228869987}
     - target: {fileID: 7467305165402138052, guid: dadf92904471c1b479fb2a803e1c103d, type: 3}
       propertyPath: m_Name
       value: MainObject
@@ -6200,6 +6206,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4d42a460245f584db7738201448e7b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7194633713656357945 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5015065120395663081, guid: dadf92904471c1b479fb2a803e1c103d, type: 3}
+  m_PrefabInstance: {fileID: 7194633713656357940}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf7e552bba56d3b4aba539379860ab93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

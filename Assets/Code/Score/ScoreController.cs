@@ -5,29 +5,30 @@ using UnityEngine;
 
 namespace Assets.Code.Score
 {
-    public class ScoreController
+    public class ScoreController : MonoBehaviour
     {
-        private static long playerScore;
+        [SerializeField] DeathScreen deathScreen;
+        private long playerScore = 0;
+
+        public long PlayerScore => playerScore;
 
         float timeOfPoint;
 
-        public static long PLayerScore => playerScore;
-
         public static Action ScoreUpdated;
 
-        public ScoreController()
+        public void Start()
         {
+            deathScreen.PlayerRevive += Revived; 
             EnemyUnit.onEnemyKilled += KilledEnemy;
-            DeathScreen.PlayerRevive += Revived;
             timeOfPoint = 0;
         }
 
         /// <summary>
         /// Увеличивает счет игрока на 10%
         /// </summary>
-        public static void Booster()
+        public void Booster()
         {
-            playerScore += ((long)(playerScore * 0.1)); 
+            playerScore += ((long)(playerScore * 0.1));
         }
 
         public void KilledEnemy()

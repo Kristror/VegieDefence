@@ -8,6 +8,7 @@ namespace Assets.Code.UI
     {
 
         [SerializeField] private TextMeshProUGUI scoreText;
+        [SerializeField] private ScoreController scoreController;
 
 
         private string score = "Score: ";
@@ -20,7 +21,7 @@ namespace Assets.Code.UI
 
         public void UpdateScore()
         {
-            scoreText.text = score + ScoreController.PLayerScore;
+            scoreText.text = score + scoreController.PlayerScore;
         }
     }
 }

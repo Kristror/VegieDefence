@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7481310326694947041}
   - component: {fileID: 3826623359991335490}
   - component: {fileID: 4987857629329005012}
+  - component: {fileID: 5015065120395663081}
   m_Layer: 0
   m_Name: MainObject
   m_TagString: Untagged
@@ -51,6 +52,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 2795415015033745504, guid: 0235bfbe11c629b48b00f03c2e8bedcd, type: 3}
   enemyStats: {fileID: 11400000, guid: 0efe58dfec5a30b4e955fa984608eba8, type: 2}
   boosterPrefab: {fileID: 8078799082567940891, guid: 86dfb34908fad494ebef6e6ea9c3c42e, type: 3}
+  scoreController: {fileID: 5015065120395663081}
 --- !u!114 &3826623359991335490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,3 +78,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRecord: {fileID: 11400000, guid: 71083ea0f42912e428130db4d598d674, type: 2}
+--- !u!114 &5015065120395663081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7467305165402138052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf7e552bba56d3b4aba539379860ab93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathScreen: {fileID: 0}

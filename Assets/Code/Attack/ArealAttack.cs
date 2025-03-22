@@ -7,10 +7,11 @@ namespace Assets.Code.Player
     public class ArealAttack : MonoBehaviour
     {
         [SerializeField] private GameObject arealObject;
+        
 
         public void Start()
         {
-            DeathScreen.PlayerRevive += Attack;
+            GameObject.Find("UI").GetComponentInChildren<DeathScreen>(true).PlayerRevive += Attack;
         }
         public void Attack()
         {

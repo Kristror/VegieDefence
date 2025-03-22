@@ -15,10 +15,11 @@ namespace Assets.Code.UI
         [SerializeField] TextMeshProUGUI bestcoreText;
 
         [SerializeField] RecordController recordController;
+        [SerializeField] ScoreController scoreController;
 
-        public static Action PlayerRevive;
+        public Action PlayerRevive;
 
-        public  Action ShowInGameUI;
+        public Action ShowInGameUI;
 
         private void Start()
         {
@@ -31,7 +32,7 @@ namespace Assets.Code.UI
             this.gameObject.SetActive(true);
             this.ShowInGameUI = ShowInGameUI;
 
-            long score = ScoreController.PLayerScore;
+            long score = scoreController.PlayerScore;
 
             recordController.UpdateScore(score);
             scoreText.text = "Score: " + score.ToString();

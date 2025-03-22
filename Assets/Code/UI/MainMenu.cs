@@ -14,6 +14,7 @@ namespace Assets.Code.UI
 
         private Action OpenSettingsAction;
         private Action ShowInGameUI;
+        private Action Subscribe;
 
         private void Start()
         {
@@ -22,17 +23,18 @@ namespace Assets.Code.UI
             quit.onClick.AddListener(CloseGame);
         }
 
-        public void OpenMainMenu(Action settings, Action showInGameUI)
+        public void OpenMainMenu(Action settings, Action showInGameUI, Action subscribe)
         {
             OpenSettingsAction = settings;
             ShowInGameUI = showInGameUI;
+            Subscribe = subscribe;
 
             this.gameObject.SetActive(true);
         }
 
         private void GameStart()
         {
-            mainObject.StartGame();
+            mainObject.StartGame(Subscribe);
             ShowInGameUI?.Invoke();
             this.gameObject.SetActive(false);
         }

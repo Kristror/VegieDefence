@@ -11,6 +11,7 @@ namespace Assets.Code.Boosters
         private const int boosterPoolLenght = 10;
 
         private const int circleRadius = 5;
+
         public BoosterController(GameObject booster)
         {
             lastSpawn = 0;
@@ -29,8 +30,11 @@ namespace Assets.Code.Boosters
         private void SpawnBooster()
         {
             Transform booster = boosterPool.GetNextItem();
+
             booster.GetComponent<Booster>().Activate();
-            booster.transform.position =  Random.insideUnitCircle * circleRadius; 
+            //Используем Range вместо UnitCircle что бы избежать спавна в игроке
+            Vector2 randomPosition = new Vector2(Random.Range(0.1f, 1), Random.Range(0.1f, 1));
+            booster.transform.position = randomPosition * circleRadius; 
         }
     }
 }

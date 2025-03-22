@@ -6,9 +6,8 @@ namespace Assets.Code.Player
 {
     public class PlayerStatsController : MonoBehaviour
     {
-        [SerializeField] public static PlayerStats playerStats;
-
-        public static Action PlayerDeath;
+        private PlayerStats playerStats;
+        public Action PlayerDeath;
 
         private ClasesEnum baseClass;
 
@@ -36,7 +35,7 @@ namespace Assets.Code.Player
             playerStats.Damage = baseStats.Damage;
             playerStats.ShootingSpeed = baseStats.ShootingSpeed;
 
-            DeathScreen.PlayerRevive += Revive;
+            GameObject.Find("UI").GetComponentInChildren<DeathScreen>(true).PlayerRevive += Revive;
         }
 
         public void SetClass(ClasesEnum clasesEnum) // временное решение до появления интерфейса
@@ -48,7 +47,7 @@ namespace Assets.Code.Player
         /// <summary>
         /// Лечит игрока
         /// </summary>
-        public static void Heal(int amount)
+        public  void Heal(int amount)
         {
             playerStats.Health += amount;
         }
@@ -89,7 +88,7 @@ namespace Assets.Code.Player
         /// <summary>
         /// Включает удвоение урона
         /// </summary>
-        public static void Booster()
+        public void Booster()
         {
             playerStats.Booster();
         }

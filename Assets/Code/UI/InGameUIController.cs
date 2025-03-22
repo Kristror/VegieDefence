@@ -16,17 +16,19 @@ namespace Assets.Code.UI
         [SerializeField] GameObject background;
 
         private void Start()
-        {
-            PlayerStatsController.PlayerDeath += ShowDeathScreen;
+        {            
             PauseController.ActivatePause += ShowPause;
-
             ShowBackground();
             ShowMainMenu();
+        }
+        public void SubscribeToDeath()
+        {
+            GameObject.Find("Player(Clone)").GetComponent<PlayerStatsController>().PlayerDeath += ShowDeathScreen;
         }
 
         private void ShowMainMenu()
         {
-            mainMenu.OpenMainMenu(ShowSettings, ShowInGameUI);
+            mainMenu.OpenMainMenu(ShowSettings, ShowInGameUI, SubscribeToDeath);
         }
 
         private void ShowSettings()

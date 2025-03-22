@@ -6,21 +6,20 @@ namespace Assets.Code.Score
 {
     [CreateAssetMenu(fileName = "PlayerRecord", menuName = "MyTools/PlayerRecord")]
     public class Record : ScriptableObject
-    {       
+    {
 
-            [SerializeField] private long recordScore;
-            public long RecordScore
+        [SerializeField] private long recordScore;
+        public long RecordScore
+        {
+            get
             {
-                get
-                {
-                    return recordScore;
-                }
-                set
-                {   
-                    if (value > 0) recordScore = value;
-                }
+                return recordScore;
             }
+            set
+            {
+                if (value > 0) recordScore = value;
+            }
+        }
 
-            
     }
 }
