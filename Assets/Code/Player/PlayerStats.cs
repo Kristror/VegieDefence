@@ -86,13 +86,7 @@ namespace Assets.Code.Player
         /// <summary>
         /// Удвоение скорости стрельбы
         /// </summary>
-        public void Booster()
-        {
-            if (booster == 1)
-            {
-                booster = 2;
-            }
-            else booster = 1;
-        }
+        public void ActivateBooster()=> booster = 2; 
+        public void DeactivateBooster() => booster = 1;
     }
 }

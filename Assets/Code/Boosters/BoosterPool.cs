@@ -1,4 +1,6 @@
 ﻿using Assets.Code.Enemy;
+using Assets.Code.Player;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,19 +11,19 @@ namespace Assets.Code.Boosters
     {
         /// <param name="poolLenght">Размер массива</param>
         /// <param name="booster">Обьект бустер</param>
-        public BoosterPool(int poolLenght, GameObject booster)
+        public BoosterPool(int poolLenght, GameObject booster, Action ShootingSpeedUp, PlayerStatsController playerStatsController)
         {
             poolObject = booster;
             this.poolLenght = poolLenght;
 
             poolCount = -1;
-            CreateBoosterPool();
+            CreateBoosterPool(ShootingSpeedUp, playerStatsController);
         }
 
         /// <summary>
         /// Создает пул бустеров и заполняет его
         /// </summary>
-        private void CreateBoosterPool()
+        private void CreateBoosterPool(Action ShootingSpeedUp, PlayerStatsController playerStatsController)
         {
             poolInstanse = new GameObject("BoosterPool").transform;
 
@@ -33,6 +35,7 @@ namespace Assets.Code.Boosters
 
                 poolList.Add(item.transform);
                 item.transform.SetParent(poolInstanse);
+                item.GetComponent<Booster>().SetUp(ShootingSpeedUp, playerStatsController);
                 item.SetActive(false);
             }
         }

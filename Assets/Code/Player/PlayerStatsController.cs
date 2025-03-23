@@ -86,11 +86,18 @@ namespace Assets.Code.Player
         }
 
         /// <summary>
-        /// Включает удвоение урона
+        /// Включает удвоение скорости стрельбы
         /// </summary>
-        public void Booster()
+        public void ActivateBooster()
         {
-            playerStats.Booster();
+            playerStats.ActivateBooster();
+        }
+        /// <summary>
+        /// Выключает удвоение скорости стрельбы
+        /// </summary>
+        public void DeactivateBooster()
+        {
+            playerStats.DeactivateBooster();
         }
 
         /// <summary>

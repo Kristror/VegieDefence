@@ -1,5 +1,6 @@
 ﻿using Assets.Code.Player;
 using Assets.Code.Score;
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,6 +9,23 @@ namespace Assets.Code.Boosters
     public class Booster : BoosterBase
     {
         BoosterTypeEnum type;
+
+        PlayerStatsController playerStatsController;
+        ScoreController scoreController;
+
+        Action ShootingSpeedUp;
+
+        private void Start()
+        {
+            scoreController = GameObject.Find("MainObject").GetComponent<ScoreController>();
+        }
+
+        public void SetUp(Action ShootingSpeedUp, PlayerStatsController playerStatsController)
+        {
+            this.ShootingSpeedUp = ShootingSpeedUp;
+            this.playerStatsController = playerStatsController;
+        }
+
         public void Activate()
         {
             this.gameObject.SetActive(true);
@@ -16,7 +34,7 @@ namespace Assets.Code.Boosters
 
         private void ChooseEfect()
         {
-            type = (BoosterTypeEnum)Random.Range(0, 2);
+            type = (BoosterTypeEnum)UnityEngine.Random.Range(0, 2);
 
             switch (type)
             {
@@ -41,16 +59,15 @@ namespace Assets.Code.Boosters
         private void Heal()
         {
             int healAmount = 50;
-            GameObject.Find("MainObject").GetComponent<PlayerStatsController>().Heal(healAmount);
+            playerStatsController.Heal(healAmount);
         }
         private void ShootingSpeedUP()
         {
-            //Уведомить контроллер, он начнет таймер
-            GameObject.Find("Player").GetComponent<PlayerStatsController>().Booster();
+            ShootingSpeedUp.Invoke();
         }
         private void ScoreUP()
         {
-            GameObject.Find("MainObject").GetComponent<ScoreController>().Booster();
+            scoreController.Booster();
         }
 
         public override void Deactivate()

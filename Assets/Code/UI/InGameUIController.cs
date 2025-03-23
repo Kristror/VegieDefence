@@ -23,7 +23,7 @@ namespace Assets.Code.UI
         }
         public void SubscribeToDeath()
         {
-            GameObject.Find("Player(Clone)").GetComponent<PlayerStatsController>().PlayerDeath += ShowDeathScreen;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsController>().PlayerDeath += ShowDeathScreen;
         }
 
         private void ShowMainMenu()

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Code.Player;
+using UnityEngine;
 
 namespace Assets.Code.Boosters
 {
@@ -12,10 +13,18 @@ namespace Assets.Code.Boosters
 
         private const int circleRadius = 5;
 
-        public BoosterController(GameObject booster)
+        private bool isShootingBoosterActive;
+        private const float durationSotingBooster = 15;
+        private float timeShootingBoosterStart;
+
+        private PlayerStatsController playerStatsController;
+
+        public BoosterController(GameObject booster, PlayerStatsController playerStatsController)
         {
+            this.playerStatsController = playerStatsController;
             lastSpawn = 0;
-            boosterPool = new BoosterPool(boosterPoolLenght, booster);
+            boosterPool = new BoosterPool(boosterPoolLenght, booster, ShootingSpeedUp, playerStatsController);
+            StopShootingBooster();
         }
 
         public void FrameUpdate()
@@ -25,6 +34,26 @@ namespace Assets.Code.Boosters
                 lastSpawn = Time.time;
                 SpawnBooster();
             }
+            if(Time.time - timeShootingBoosterStart>= durationSotingBooster)
+            {
+                StopShootingBooster();
+            }
+        }
+
+        private void ShootingSpeedUp()
+        {
+            timeShootingBoosterStart = Time.time;
+            if (!isShootingBoosterActive)
+            {
+                isShootingBoosterActive = true;
+                playerStatsController.ActivateBooster();
+            }
+        }
+
+        private void StopShootingBooster()
+        {
+            isShootingBoosterActive = false;
+            playerStatsController.DeactivateBooster();
         }
 
         private void SpawnBooster()

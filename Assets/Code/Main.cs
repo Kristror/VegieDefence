@@ -28,7 +28,7 @@ namespace Assets.Code
 
             enemyController = new EnemyController(enemyPrefab,enemyStats);
 
-            boosterController = new BoosterController(boosterPrefab);
+            boosterController = new BoosterController(boosterPrefab, playerController.playerStatsController);
 
             Subscribe.Invoke();
         }

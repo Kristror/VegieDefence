@@ -51,6 +51,7 @@ namespace Assets.Code.UI
             ShowInGameUI?.Invoke();
             this.gameObject.SetActive(false);
             PlayerRevive?.Invoke();
+            Time.timeScale = 1;
         }
     }
 }

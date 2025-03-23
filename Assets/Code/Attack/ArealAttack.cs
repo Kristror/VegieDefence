@@ -6,7 +6,7 @@ namespace Assets.Code.Player
 {
     public class ArealAttack : MonoBehaviour
     {
-        [SerializeField] private GameObject arealObject;
+        [SerializeField] private GameObject arealBullet;
         
 
         public void Start()
@@ -15,7 +15,7 @@ namespace Assets.Code.Player
         }
         public void Attack()
         {
-            GameObject.Instantiate(arealObject);
+            GameObject.Instantiate(arealBullet);
         }
     }
 }

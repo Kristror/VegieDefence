@@ -8,7 +8,7 @@ namespace Assets.Code.Player
     {
         private ClasesEnum playerClass;
 
-        private PlayerStatsController  playerStatsController;
+        public  PlayerStatsController  playerStatsController;
         private PlayerMovement playerMovment;
         private PlayerShooting playerShooting;
 

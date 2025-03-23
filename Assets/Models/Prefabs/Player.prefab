@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b9205ef409c374c8d61bfde711b550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arealObject: {fileID: 1963576040724275600, guid: c8ad01c4b1bf0804cb59bd86bddc8e3e, type: 3}
+  arealBullet: {fileID: 1963576040724275600, guid: c8ad01c4b1bf0804cb59bd86bddc8e3e, type: 3}
 --- !u!1 &774182725610824773
 GameObject:
   m_ObjectHideFlags: 0
