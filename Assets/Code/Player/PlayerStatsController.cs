@@ -72,17 +72,17 @@ namespace Assets.Code.Player
         /// <summary>
         /// Увеличивает урон
         /// </summary>
-        public void DamageUpgrade()
+        public void DamageUpgrade(int amount)
         {
-            playerStats.Damage++;
+            playerStats.Damage += amount;
         }
 
         /// <summary>
         /// Увеличивает скорость стрельбы
         /// </summary>
-        public void ShootingSpeedUpgrade()
+        public void ShootingSpeedUpgrade(float amount)
         {
-            playerStats.ShootingSpeed++;
+            playerStats.ShootingSpeed -= amount;
         }
 
         /// <summary>

@@ -3,6 +3,7 @@ using Assets.Code.Player;
 using Assets.Code.Enemy;
 using Assets.Code.Boosters;
 using Assets.Code.Score;
+using Assets.Code.PlayerUpgrades;
 using System;
 
 namespace Assets.Code
@@ -29,6 +30,8 @@ namespace Assets.Code
             enemyController = new EnemyController(enemyPrefab,enemyStats);
 
             boosterController = new BoosterController(boosterPrefab, playerController.playerStatsController);
+
+            GetComponent<UpgradeController>().SetPlayerStatsController(playerController.playerStatsController);
 
             Subscribe.Invoke();
         }
