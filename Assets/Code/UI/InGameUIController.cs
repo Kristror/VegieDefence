@@ -11,6 +11,7 @@ namespace Assets.Code.UI
         [SerializeField] DeathScreen deathScreen;
         [SerializeField] PauseMenu pauseMenu;
         [SerializeField] ScoreUI scoreUI;
+        [SerializeField] ClassMenu classMenu;
 
 
         [SerializeField] GameObject background;
@@ -28,7 +29,12 @@ namespace Assets.Code.UI
 
         private void ShowMainMenu()
         {
-            mainMenu.OpenMainMenu(ShowSettings, ShowInGameUI, SubscribeToDeath);
+            mainMenu.OpenMainMenu(ShowSettings, ShowClassMenu); //добавить выбор класса
+        }
+
+        private void ShowClassMenu()
+        {
+            classMenu.OpenClassMenu(ShowMainMenu, ShowInGameUI, SubscribeToDeath);
         }
 
         private void ShowSettings()

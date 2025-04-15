@@ -9,7 +9,7 @@ namespace Assets.Code.Player
         private PlayerStats playerStats;
         public Action PlayerDeath;
 
-        private ClasesEnum baseClass;
+        private ClassesEnum baseClass;
 
         public void Start()
         {
@@ -21,9 +21,9 @@ namespace Assets.Code.Player
 
             switch (baseClass)
             {
-                case ClasesEnum.Potato: classPath = "Class start stats/PotatoStats"; break;
-                case ClasesEnum.Onion: classPath = "Class start stats/OnionStats"; break;
-                case ClasesEnum.Pumpkin: classPath = "Class start stats/PumpkinStats"; break;
+                case ClassesEnum.Potato: classPath = "Class start stats/PotatoStats"; break;
+                case ClassesEnum.Onion: classPath = "Class start stats/OnionStats"; break;
+                case ClassesEnum.Pumpkin: classPath = "Class start stats/PumpkinStats"; break;
 
                 default: classPath = "Class start stats/PotatoStats"; break;
             }
@@ -38,7 +38,7 @@ namespace Assets.Code.Player
             GameObject.Find("UI").GetComponentInChildren<DeathScreen>(true).PlayerRevive += Revive;
         }
 
-        public void SetClass(ClasesEnum clasesEnum) // временное решение до появления интерфейса
+        public void SetClass(ClassesEnum clasesEnum) // временное решение до появления интерфейса
         {
             baseClass = clasesEnum;
         }

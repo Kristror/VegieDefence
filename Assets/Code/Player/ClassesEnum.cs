@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Code.Player
 {
-    public enum ClasesEnum
+    public enum ClassesEnum
     {
         Potato,
         Onion,

@@ -9,6 +9,11 @@ namespace Assets.Code.Score
     {
 
         [SerializeField] private long recordScore;
+
+        [SerializeField] private long onionRecordScore;
+        [SerializeField] private long potatoRecordScore;
+        [SerializeField] private long pumpkinRecordScore;
+
         public long RecordScore
         {
             get
