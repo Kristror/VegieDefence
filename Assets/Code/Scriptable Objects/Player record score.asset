@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2569f354f58c0ec49afe25870fb66b2f, type: 3}
   m_Name: Player record score
   m_EditorClassIdentifier: 
-  recordScore: 0
+  onionRecordScore: 1
+  potatoRecordScore: 2
+  pumpkinRecordScore: 3

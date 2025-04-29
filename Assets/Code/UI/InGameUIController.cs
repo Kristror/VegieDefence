@@ -29,7 +29,7 @@ namespace Assets.Code.UI
 
         private void ShowMainMenu()
         {
-            mainMenu.OpenMainMenu(ShowSettings, ShowClassMenu); //добавить выбор класса
+            mainMenu.OpenMainMenu(ShowSettings, ShowClassMenu);
         }
 
         private void ShowClassMenu()

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Code.PlayerUpgrades;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,24 +12,30 @@ namespace Assets.Code.Player
         public  PlayerStatsController  playerStatsController;
         private PlayerMovement playerMovment;
         private PlayerShooting playerShooting;
+        private PlayerSpriteController playerSpriteController;
+        private ClassesSpecialAbilities classesSpecialAbilities;
 
 
-        public PlayerController(GameObject playerPrefab, PlayerStats playerStats)
+        public PlayerController(GameObject playerPrefab, PlayerStats playerStats, ClassesEnum playerClass,UpgradeController upgradeController)
         {
             GameObject playerObject = GameObject.Instantiate(playerPrefab);
 
             playerStatsController = playerObject.GetComponent<PlayerStatsController>();
             playerMovment = playerObject.GetComponent<PlayerMovement>();
             playerShooting = playerObject.GetComponent<PlayerShooting>();
+            playerSpriteController = playerObject.GetComponent<PlayerSpriteController>();
+            classesSpecialAbilities = playerObject.GetComponent<ClassesSpecialAbilities>();
 
-            playerClass = 0; //Дальше получать инфорацию о классе в интерфейсе выбора класса
             playerStatsController.SetClass(playerClass);
+            playerSpriteController.SetPlayerSprite(playerClass);
+            classesSpecialAbilities.Activate(playerClass, upgradeController);
         }
 
         public void FrameUpdate() 
         {
             playerMovment.FrameUpdate();
             playerShooting.FrameUpdate();
+            classesSpecialAbilities .FrameUpdate();
         }  
     }
 }

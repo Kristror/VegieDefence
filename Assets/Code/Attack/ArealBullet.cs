@@ -5,9 +5,19 @@ namespace Assets.Code.Attack
 {
     public class ArealBullet : MonoBehaviour
     {
+        private void Start()
+        {
+            StartCoroutine(SelfDestruct());
+        }
+
+        IEnumerator SelfDestruct()
+        {
+            yield return new WaitForSeconds(0.5f);
+            Destroy(gameObject);
+        }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            this.gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

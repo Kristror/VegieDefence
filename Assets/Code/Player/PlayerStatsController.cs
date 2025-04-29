@@ -9,23 +9,35 @@ namespace Assets.Code.Player
         private PlayerStats playerStats;
         public Action PlayerDeath;
 
-        private ClassesEnum baseClass;
-
         public void Start()
         {
+            GameObject.Find("UI").GetComponentInChildren<DeathScreen>(true).PlayerRevive += Revive;
+        }
+
+        public void SetClass(ClassesEnum playerClass) 
+        {
+
             playerStats = Resources.Load<PlayerStats>("PlayerStats");
 
             PlayerStats baseStats;
 
-            string classPath = "Class start stats/PotatoStats"; 
+            string classPath;
 
-            switch (baseClass)
+            switch (playerClass)
             {
-                case ClassesEnum.Potato: classPath = "Class start stats/PotatoStats"; break;
-                case ClassesEnum.Onion: classPath = "Class start stats/OnionStats"; break;
-                case ClassesEnum.Pumpkin: classPath = "Class start stats/PumpkinStats"; break;
+                case ClassesEnum.Potato: 
+                    classPath = "Class start stats/PotatoStats"; 
+                break;
+                case ClassesEnum.Onion: 
+                    classPath = "Class start stats/OnionStats"; 
+                break;
+                case ClassesEnum.Pumpkin: 
+                    classPath = "Class start stats/PumpkinStats"; 
+                break;
 
-                default: classPath = "Class start stats/PotatoStats"; break;
+                default: 
+                    classPath = "Class start stats/PotatoStats"; 
+                break;
             }
 
             baseStats = Resources.Load<PlayerStats>(classPath);
@@ -34,13 +46,6 @@ namespace Assets.Code.Player
             playerStats.Health = baseStats.Health;
             playerStats.Damage = baseStats.Damage;
             playerStats.ShootingSpeed = baseStats.ShootingSpeed;
-
-            GameObject.Find("UI").GetComponentInChildren<DeathScreen>(true).PlayerRevive += Revive;
-        }
-
-        public void SetClass(ClassesEnum clasesEnum) // временное решение до появления интерфейса
-        {
-            baseClass = clasesEnum;
         }
 
 
@@ -50,6 +55,14 @@ namespace Assets.Code.Player
         public  void Heal(int amount)
         {
             playerStats.Health += amount;
+        }
+
+        /// <summary>
+        /// Лечит на 2% от макс здоровья
+        /// </summary>
+        public void Regen() 
+        { 
+            playerStats.Health += (int)(playerStats.MaxHealth*0.02); 
         }
 
         /// <summary>

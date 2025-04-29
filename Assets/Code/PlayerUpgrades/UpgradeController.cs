@@ -10,7 +10,7 @@ namespace Assets.Code.PlayerUpgrades
         private int upgradePoints;
         private int upgradePrice;
 
-        private const int pointsForEnemy = 2;
+        private int pointsForEnemy = 2;
         private const int maxHealthUpgrade = 25;
         private const int damageUpgrade = 2;
         private const float shootingSpeedUpgrade = 0.02f;
@@ -24,7 +24,13 @@ namespace Assets.Code.PlayerUpgrades
         {
             upgradePoints = 0;
             upgradePrice = 20;
+
             EnemyUnit.onEnemyKilled += EnemyKilled;
+        }
+
+        public void PumpkinSpecialPoints() 
+        {
+             pointsForEnemy = pointsForEnemy * 2;
         }
 
         public void SetPlayerStatsController(PlayerStatsController playerStatsController)
@@ -34,6 +40,7 @@ namespace Assets.Code.PlayerUpgrades
 
         private void EnemyKilled()
         {
+
             upgradePoints += pointsForEnemy; 
         }
 

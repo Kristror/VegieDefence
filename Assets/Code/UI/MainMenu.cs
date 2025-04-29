@@ -6,7 +6,7 @@ namespace Assets.Code.UI
 {
     public class MainMenu : MonoBehaviour
     {
-        [SerializeField] Button classMenuButton; // заполнить
+        [SerializeField] Button classMenuButton;
         [SerializeField] Button settingsButton;
         [SerializeField] Button quitButton;
 
@@ -23,14 +23,14 @@ namespace Assets.Code.UI
         public void OpenMainMenu(Action opentSettings, Action openClassMenu)
         {
             OpenSettingsAction = opentSettings;
-            OpenSettingsAction = openClassMenu;
+            OpenClassMenuAction = openClassMenu;
 
             this.gameObject.SetActive(true);
         }
 
         private void OpenClassMenu()
         {
-            OpenSettingsAction?.Invoke();
+            OpenClassMenuAction?.Invoke();
             this.gameObject.SetActive(false);
         }
 

@@ -36,7 +36,7 @@ namespace Assets.Code.UI
 
             recordController.UpdateScore(score);
             scoreText.text = "Score: " + score.ToString();
-            bestcoreText.text = "Best score: " + recordController.BestScore;
+            bestcoreText.text = "Best score: " + recordController.BestScore();
         }
                     
         private void BackToMenu()

@@ -21,17 +21,25 @@ namespace Assets.Code
         private EnemyController enemyController;
         private BoosterController boosterController;
 
-        public void StartGame(Action Subscribe)
+        private ClassesEnum playerClass;
+
+        public ClassesEnum PlayerClass => playerClass;
+
+        public void StartGame(Action Subscribe, ClassesEnum playerClass)
         {
             this.gameObject.SetActive(true);
 
-            playerController = new PlayerController(playerPrefab, playerStats);
+            this.playerClass = playerClass;
+
+            UpgradeController upgradeController = GetComponent<UpgradeController>();
+
+            playerController = new PlayerController(playerPrefab, playerStats, playerClass, upgradeController);
 
             enemyController = new EnemyController(enemyPrefab,enemyStats);
 
             boosterController = new BoosterController(boosterPrefab, playerController.playerStatsController);
 
-            GetComponent<UpgradeController>().SetPlayerStatsController(playerController.playerStatsController);
+            upgradeController.SetPlayerStatsController(playerController.playerStatsController);
 
             Subscribe.Invoke();
         }
