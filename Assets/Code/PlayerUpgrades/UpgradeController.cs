@@ -1,6 +1,6 @@
 ﻿using Assets.Code.Enemy;
 using Assets.Code.Player;
-using System.Collections;
+using System;
 using UnityEngine;
 
 namespace Assets.Code.PlayerUpgrades
@@ -19,6 +19,8 @@ namespace Assets.Code.PlayerUpgrades
 
         public int Points => upgradePoints;
         public int Price => upgradePrice;
+
+        public Action PointUpdate;
 
         private void Start()
         {
@@ -40,8 +42,8 @@ namespace Assets.Code.PlayerUpgrades
 
         private void EnemyKilled()
         {
-
-            upgradePoints += pointsForEnemy; 
+            upgradePoints += pointsForEnemy;
+            PointUpdate?.Invoke();
         }
 
         public void MaxHealthUpgrade()
@@ -64,7 +66,10 @@ namespace Assets.Code.PlayerUpgrades
 
         private void UpgradeCostUp()
         {
+            upgradePoints -= upgradePrice;
             upgradePrice += upgradePrice/2;
+
+            PointUpdate?.Invoke();
         }
     }
 }

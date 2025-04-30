@@ -120,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f6865fd788a1fe4ca079533aa7dbf29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeController: {fileID: 0}
   playerStatsController: {fileID: 6885582620900752057}
   arealAttack: {fileID: 6869831910687228027}
 --- !u!50 &3836504823389370552

@@ -7,7 +7,12 @@ namespace Assets.Code.Player
     public class PlayerStatsController : MonoBehaviour
     {
         private PlayerStats playerStats;
+
         public Action PlayerDeath;
+        public Action HpUpdated;
+
+        public int PlayerHealth => playerStats.Health;
+        public int PlayerMaxHealth => playerStats.MaxHealth;
 
         public void Start()
         {
@@ -55,6 +60,7 @@ namespace Assets.Code.Player
         public  void Heal(int amount)
         {
             playerStats.Health += amount;
+            HpUpdated?.Invoke();
         }
 
         /// <summary>
@@ -62,7 +68,8 @@ namespace Assets.Code.Player
         /// </summary>
         public void Regen() 
         { 
-            playerStats.Health += (int)(playerStats.MaxHealth*0.02); 
+            playerStats.Health += (int)(playerStats.MaxHealth*0.02);
+            HpUpdated?.Invoke();
         }
 
         /// <summary>
@@ -71,6 +78,7 @@ namespace Assets.Code.Player
         public void Hurt(int amount)
         {
             playerStats.Health -= amount;
+            HpUpdated?.Invoke();
             CheckHealth();
         }
 
@@ -80,6 +88,7 @@ namespace Assets.Code.Player
         public void MaxHealthUpgrade(int amount)
         {
             playerStats.MaxHealth += amount;
+            HpUpdated?.Invoke();
         }
 
         /// <summary>

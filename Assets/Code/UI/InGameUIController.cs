@@ -10,7 +10,7 @@ namespace Assets.Code.UI
         [SerializeField] SettingsMenu settingsMenu;
         [SerializeField] DeathScreen deathScreen;
         [SerializeField] PauseMenu pauseMenu;
-        [SerializeField] ScoreUI scoreUI;
+        [SerializeField] PlayerInGameUI scoreUI;
         [SerializeField] ClassMenu classMenu;
 
 
