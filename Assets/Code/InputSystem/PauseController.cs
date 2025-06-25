@@ -24,7 +24,10 @@ namespace Assets.Code.UI
 
         private void Pause(InputAction.CallbackContext context)
         {
-            ActivatePause?.Invoke();
+            if (Time.timeScale != 0)
+            {
+                ActivatePause?.Invoke();
+            }
         }
     }
 }

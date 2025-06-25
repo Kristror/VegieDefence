@@ -13,7 +13,11 @@ namespace Assets.Code.Player
 
         private Action specialAbility;
 
-        private const float timeForAbilityReset = 5;
+        private const float timeForRegenReset = 5;
+        private const float timeForAttackReset = 15;
+        private const float timeForPointsReset = 10;
+
+        private float timeForAbilityReset;
         private float timeOfLastActivation;
 
 
@@ -21,14 +25,31 @@ namespace Assets.Code.Player
         {
             timeOfLastActivation = 0;
 
-            if (playerClass == ClassesEnum.Potato) specialAbility = playerStatsController.Regen;
-            if (playerClass == ClassesEnum.Onion) specialAbility = arealAttack.Attack; 
-            if (playerClass == ClassesEnum.Pumpkin) upgradeController.PumpkinSpecialPoints();
+            if (playerClass == ClassesEnum.Potato)
+            {
+                specialAbility = playerStatsController.Regen;
+                timeForAbilityReset = timeForRegenReset;
+            }
+
+            if (playerClass == ClassesEnum.Onion)
+            {
+                specialAbility = arealAttack.Attack;
+                timeForAbilityReset = timeForAttackReset;
+            }
+            if (playerClass == ClassesEnum.Pumpkin)
+            {
+                upgradeController.PumpkinSpecialPoints();
+                timeForAbilityReset = timeForPointsReset;
+            }
         }
 
         public void FrameUpdate()
         {
-            specialAbility?.Invoke();
+            if (Time.time - timeOfLastActivation >= timeForAbilityReset)
+            {
+                timeOfLastActivation = Time.time;
+                specialAbility?.Invoke();
+            }
         }
     }
 }
