@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Assets.Code.Player
 {
+    /// <summary>
+    /// Отвечает за проведение атаки по области вокруг игрока
+    /// </summary>
     public class ArealAttack : MonoBehaviour
     {
         [SerializeField] private GameObject arealBullet;

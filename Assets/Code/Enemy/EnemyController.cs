@@ -1,18 +1,22 @@
-﻿using System.Collections;
+﻿using Assets.Code.DangerLevels;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Code.Enemy
 {
+    /// <summary>
+    /// Отвечает за контроль над появлдением противников и увеличением их характтеристик
+    /// </summary>
     public class EnemyController
-    {
-        //Передавать противникам новые данные о здоровье, уроне и
-        //увеличивать скорость появления противников с течением времени
+    {        
         private EnemySpawner spawner;
         private EnemyStats stats;
 
-        public EnemyController(GameObject enemyObject, EnemyStats stats)
+        public EnemyController(GameObject enemyObject, EnemyStats stats, DangerLevelController dangerLevelController)
         {
             this.stats = stats;
+            stats.SetDangerController(dangerLevelController);
+
             spawner =  new EnemySpawner(enemyObject, stats);
         }
 

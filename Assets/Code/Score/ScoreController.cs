@@ -21,6 +21,7 @@ namespace Assets.Code.Score
             deathScreen.PlayerRevive += Revived; 
             EnemyUnit.onEnemyKilled += KilledEnemy;
             timeOfPoint = 0;
+            UpdateUI();
         }
 
         /// <summary>
@@ -29,6 +30,7 @@ namespace Assets.Code.Score
         public void Booster()
         {
             playerScore += ((long)(playerScore * 0.1));
+            UpdateUI();
         }
 
         public void KilledEnemy()
@@ -40,6 +42,7 @@ namespace Assets.Code.Score
         private void Revived()
         {
             playerScore = playerScore - (playerScore / 4);
+            UpdateUI();
         }
 
         public void FrameUpdate()

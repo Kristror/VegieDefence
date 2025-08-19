@@ -10,7 +10,7 @@ namespace Assets.Code.UI
         [SerializeField] private Button damageUpgradeButton;
         [SerializeField] private Button shotingSpeedUpgradeButton;
 
-        [SerializeField] private UpgradeController upgradeController;
+        private UpgradeController upgradeController;
 
         private void Start()
         {
@@ -18,7 +18,11 @@ namespace Assets.Code.UI
             damageUpgradeButton.onClick.AddListener(DamageUpgrade);
             shotingSpeedUpgradeButton.onClick.AddListener(ShootingSpeedUpgrade);
 
-            upgradeController.SetUpgradeUI(this);
+        }
+
+        public void SetUpgradeController(UpgradeController upgradeController)
+        {
+            this.upgradeController = upgradeController;
         }
 
         public void Activate()

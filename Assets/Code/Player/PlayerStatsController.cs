@@ -51,6 +51,7 @@ namespace Assets.Code.Player
             playerStats.Health = baseStats.Health;
             playerStats.Damage = baseStats.Damage;
             playerStats.ShootingSpeed = baseStats.ShootingSpeed;
+            HpUpdated?.Invoke();
         }
 
 
@@ -83,12 +84,12 @@ namespace Assets.Code.Player
         }
 
         /// <summary>
-        /// Увеличивает масимальное здоровье игрока
+        /// Увеличивает масимальное здоровье игрока и полностью лечит
         /// </summary>
         public void MaxHealthUpgrade(int amount)
         {
             playerStats.MaxHealth += amount;
-            HpUpdated?.Invoke();
+            Heal(playerStats.MaxHealth);
         }
 
         /// <summary>

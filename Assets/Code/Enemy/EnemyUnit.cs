@@ -32,11 +32,13 @@ namespace Assets.Code.Enemy
             health = stats.MaxHealth;
             damage = stats.Damage;
         }
+
         void Killed()
         {
             onEnemyKilled?.Invoke();
             gameObject.SetActive(false);
         }
+
         void Death()
         {
             gameObject.SetActive(false);

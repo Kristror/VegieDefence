@@ -3,10 +3,16 @@ using UnityEngine;
 
 namespace Assets.Code.Enemy
 {
+    /// <summary>
+    /// Отвечает за появление противников на карте
+    /// </summary>
     public class EnemySpawner
     {
         private GameObject enemyObject;
         private EnemyStats stats;
+        /// <summary>
+        /// Время прошлого появления противника
+        /// </summary>
         private float lastSpawned;
 
         private float widthScreen;
@@ -29,6 +35,9 @@ namespace Assets.Code.Enemy
 
         }
 
+        /// <summary>
+        /// Активирует противников через определенные промежутки времени
+        /// </summary>
         public void FrameUpdate()
         {
             enemyPool.FrameUpdate();
@@ -39,18 +48,24 @@ namespace Assets.Code.Enemy
             }
         }
 
+        /// <summary>
+        /// Ставит противника в случайной точке недалеко от границ экрана
+        /// </summary>
         private void SpawnEnemy()
         {
             Transform enemy = enemyPool.GetNextItem();
 
             enemy.GetComponent<EnemyUnit>().Allive();
 
-            float rand = Random.value * 2 * 3.14f;  //получаем случайную точку па периметре круга
+            float rand = Random.value * 2 * 3.14f;  //получаем случайную точку на периметре круга
             enemy.position = new Vector3(widthScreen * Mathf.Cos(rand), widthScreen * Mathf.Sin(rand));
 
             lastSpawned = Time.time;
         }
 
+        /// <summary>
+        /// Высчитывает границы экрана для появления противников
+        /// </summary>
         private void CalcBoundres()
         {
             Camera cam = Camera.main;

@@ -5,6 +5,7 @@ using Assets.Code.Boosters;
 using Assets.Code.Score;
 using Assets.Code.PlayerUpgrades;
 using System;
+using Assets.Code.DangerLevels;
 
 namespace Assets.Code
 {
@@ -32,10 +33,13 @@ namespace Assets.Code
             this.playerClass = playerClass;
 
             UpgradeController upgradeController = GetComponent<UpgradeController>();
+            DangerLevelController dangerLevelController = GetComponent<DangerLevelController>();
+
+            upgradeController.StartGame();
 
             playerController = new PlayerController(playerPrefab, playerStats, playerClass, upgradeController);
 
-            enemyController = new EnemyController(enemyPrefab,enemyStats);
+            enemyController = new EnemyController(enemyPrefab, enemyStats, dangerLevelController);
 
             boosterController = new BoosterController(boosterPrefab, playerController.playerStatsController);
 

@@ -2,11 +2,16 @@
 
 namespace Assets.Code.Enemy
 {
+    /// <summary>
+    /// Отвечает за передвижения противника
+    /// </summary>
     public class EnemyMovement : MonoBehaviour
     {
 
         [SerializeField] private EnemyStats stats;
-
+        /// <summary>
+        /// Скорость движения противника
+        /// </summary>
         private float speed;
 
         public void Start()

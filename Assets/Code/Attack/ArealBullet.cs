@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Assets.Code.Attack
 {
+
+    /// <summary>
+    /// Атака по площади вокруг игрока
+    /// </summary>
     public class ArealBullet : MonoBehaviour
     {
         private void Start()

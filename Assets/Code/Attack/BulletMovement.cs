@@ -2,7 +2,9 @@
 using UnityEngine;
 
 namespace Assets.Code.Player
-{
+{   /// <summary>
+    /// Отвечает за движение пули после выстрела
+    /// </summary>
     public class BulletMovement : MonoBehaviour
     {
         private float bulletForce;
@@ -19,7 +21,9 @@ namespace Assets.Code.Player
 
             rigidBody = GetComponent<Rigidbody2D>();
         }
-
+        /// <summary>
+        /// Следит за временем прошедшим с момента выстрела, выключает пулю после определнного времени
+        /// </summary>
         public void FrameUpdate()
         {
             if (gameObject.activeSelf)
@@ -41,6 +45,9 @@ namespace Assets.Code.Player
             rigidBody.AddForce(bulletStartPos.right * bulletForce, ForceMode2D.Impulse);
         }
 
+        /// <summary>
+        /// Остановка пули и возврат в начальное положение
+        /// </summary>
         private void Stop() 
         {
             transform.position = Vector3.zero; 
@@ -49,6 +56,9 @@ namespace Assets.Code.Player
             gameObject.SetActive(false);
         }
 
+        /// <summary>
+        /// Обработка столкновения
+        /// </summary>
         private void OnCollisionEnter2D(Collision2D collision)
         {
             Stop();

@@ -14,7 +14,7 @@ namespace Assets.Code.PlayerUpgrades
         private int pointsForEnemy = 2;
         private const int maxHealthUpgrade = 25;
         private const int damageUpgrade = 2;
-        private const float shootingSpeedUpgrade = 0.02f;
+        private const float shootingSpeedUpgrade = 0.005f;
 
         private PlayerStatsController playerStats;
 
@@ -25,12 +25,16 @@ namespace Assets.Code.PlayerUpgrades
 
         private PlayerUpgradeUI upgradeUI;
 
-        private void Start()
+        public void StartGame()
         {
             upgradePoints = 0;
             upgradePrice = 20;
 
             EnemyUnit.onEnemyKilled += EnemyKilled;
+
+            upgradeUI = GameObject.Find("UI").GetComponentInChildren<PlayerUpgradeUI>(true);
+            upgradeUI.SetUpgradeController(this);
+            PointUpdate?.Invoke();
         }
 
         public void PumpkinSpecialPoints() 
@@ -41,11 +45,6 @@ namespace Assets.Code.PlayerUpgrades
         public void SetPlayerStatsController(PlayerStatsController playerStatsController)
         {
             playerStats = playerStatsController;
-        }
-
-        public void SetUpgradeUI(PlayerUpgradeUI playerUpgradeUI)
-        {
-            upgradeUI = playerUpgradeUI;
         }
 
         private void EnemyKilled()

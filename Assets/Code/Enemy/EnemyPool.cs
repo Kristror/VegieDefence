@@ -4,8 +4,14 @@ using UnityEngine;
 
 namespace Assets.Code.Enemy
 {
+    /// <summary>
+    /// Класс создающий и отвечающий за массив противников
+    /// </summary>
     public class EnemyPool : PoolBase
     {
+        /// <summary>
+        /// Создает массив противников и заполняет его
+        /// </summary>
         /// <param name="poolLenght">Размер массива</param>
         /// <param name="enemy">Обьект противника</param>
         public EnemyPool(int poolLenght, GameObject enemy)
@@ -17,9 +23,6 @@ namespace Assets.Code.Enemy
             CreateEnemyPool();
         }
 
-        /// <summary>
-        /// Создает пул противников и заполняет его
-        /// </summary>
         private void CreateEnemyPool() 
         {
             poolInstanse = new GameObject("EnemyPool").transform;
@@ -36,6 +39,9 @@ namespace Assets.Code.Enemy
             }
         }
 
+        /// <summary>
+        /// Передает команду движения всем активным противникам
+        /// </summary>
         public void FrameUpdate()
         {
             foreach (Transform item in poolList)

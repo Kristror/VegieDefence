@@ -5,7 +5,9 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Code.Boosters
-{
+    {/// <summary>
+     /// Класс бонусов одного из 3 видов
+     /// </summary>
     public class Booster : BoosterBase
     {
         BoosterTypeEnum type;
@@ -14,12 +16,20 @@ namespace Assets.Code.Boosters
         ScoreController scoreController;
 
         Action ShootingSpeedUp;
+        /// <summary>
+        /// Количество очков здоровья которые дает бонус
+        /// </summary>
+        private int healAmount = 50;
 
         private void Start()
         {
             scoreController = GameObject.Find("MainObject").GetComponent<ScoreController>();
         }
-
+        /// <summary>
+        /// Получает параметры на которые могут воздействовать бонусы
+        /// </summary>
+        /// <param name="ShootingSpeedUp">Увеличение скорости стрельбы</param>
+        /// <param name="playerStatsController">Котроллер характеристик игрока</param>
         public void SetUp(Action ShootingSpeedUp, PlayerStatsController playerStatsController)
         {
             this.ShootingSpeedUp = ShootingSpeedUp;
@@ -32,6 +42,9 @@ namespace Assets.Code.Boosters
             ChooseEfect();
         }
 
+        /// <summary>
+        /// Выбирает один из 3 возможных эффектов для бонуса
+        /// </summary>
         private void ChooseEfect()
         {
             type = (BoosterTypeEnum)UnityEngine.Random.Range(0, 2);
@@ -55,16 +68,23 @@ namespace Assets.Code.Boosters
                 Deactivate();
             }
         }
-
+        /// <summary>
+        /// Лечение игрока
+        /// </summary>
         private void Heal()
         {
-            int healAmount = 50;
             playerStatsController.Heal(healAmount);
         }
+         /// <summary>
+         /// Временное увеличение скорости стрельбы
+         /// </summary>
         private void ShootingSpeedUP()
         {
             ShootingSpeedUp.Invoke();
         }
+        /// <summary>
+        /// Дает бонусные очки к финальному счету игрока
+        /// </summary>
         private void ScoreUP()
         {
             scoreController.Booster();

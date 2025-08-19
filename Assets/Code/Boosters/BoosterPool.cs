@@ -6,11 +6,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Code.Boosters
-{
+{    /// <summary>
+     /// Класс создающий и отвечающий за массив бонусов
+     /// </summary>
     public class BoosterPool : PoolBase
-    {
-        /// <param name="poolLenght">Размер массива</param>
-        /// <param name="booster">Обьект бустер</param>
+    {    /// <summary>
+         /// Создает массив бонусов и заполняет его
+         /// </summary>
+         /// <param name="poolLenght">Размер массива</param>
+         /// <param name="booster">Обьект бонуса</param>
         public BoosterPool(int poolLenght, GameObject booster, Action ShootingSpeedUp, PlayerStatsController playerStatsController)
         {
             poolObject = booster;
@@ -19,10 +23,7 @@ namespace Assets.Code.Boosters
             poolCount = -1;
             CreateBoosterPool(ShootingSpeedUp, playerStatsController);
         }
-
-        /// <summary>
-        /// Создает пул бустеров и заполняет его
-        /// </summary>
+        
         private void CreateBoosterPool(Action ShootingSpeedUp, PlayerStatsController playerStatsController)
         {
             poolInstanse = new GameObject("BoosterPool").transform;
